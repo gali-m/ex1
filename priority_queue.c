@@ -192,25 +192,28 @@ PriorityQueueResult pqInsert(PriorityQueue queue, PQElement element, PQElementPr
     new_element->element_data = queue->copy_element(element);
     new_element->element_priority = queue->copy_priority(priority);
 
-    // put the element in the right place in list
-    while (queue->element_list != NULL)
+    // check if need to be in the first place - the highest priority
+    if(queue->element_list == NULL || queue->element_list->element_priority <= new_element->element_priority)
     {
-        if(queue->element_list->element_priority <= new_element->element_priority)
-        {
-            new_element->next = queue->element_list;
-            queue->element_list = new_element;
-            return PQ_SUCCESS;
-        }
-        
+        new_element->next = queue->element_list;
+        queue->element_list = new_element;
+        return PQ_SUCCESS;
+    }
+
+    // put the element in the right place in list
+    while (queue->element_list->next != NULL)
+    {        
         if(queue->element_list->next->element_priority <= new_element->element_priority)
         {
             new_element->next = queue->element_list->next;
             queue->element_list->next = new_element;
             return PQ_SUCCESS;
         }
+
+        queue->element_list = queue->element_list->next;
     }
 
-    
+    // last element in the list
     new_element->next = NULL;
     queue->element_list->next = new_element;
     return PQ_SUCCESS;
