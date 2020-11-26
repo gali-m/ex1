@@ -6,15 +6,31 @@
 
 #IncludeRegexTransform: 
 
-/home/noaro/mtm/ex1/priority_queue.c
+/home/gali/mtm/ex1/pq_example_tests.c
+test_utilities.h
+/home/gali/mtm/ex1/test_utilities.h
+priority_queue.h
+/home/gali/mtm/ex1/priority_queue.h
+stdio.h
+-
+stdlib.h
+-
+
+/home/gali/mtm/ex1/priority_queue.c
 stdlib.h
 -
 assert.h
 -
 priority_queue.h
-/home/noaro/mtm/ex1/priority_queue.h
+/home/gali/mtm/ex1/priority_queue.h
 
-/home/noaro/mtm/ex1/priority_queue.h
+/home/gali/mtm/ex1/priority_queue.h
 stdbool.h
+-
+
+/home/gali/mtm/ex1/test_utilities.h
+stdbool.h
+-
+stdio.h
 -
 
