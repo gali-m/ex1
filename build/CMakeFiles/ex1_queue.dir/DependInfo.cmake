@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/gali/mtm/ex1/pq_example_tests.c" "/home/gali/mtm/ex1/build/CMakeFiles/ex1_queue.dir/pq_example_tests.c.o"
-  "/home/gali/mtm/ex1/priority_queue.c" "/home/gali/mtm/ex1/build/CMakeFiles/ex1_queue.dir/priority_queue.c.o"
+  "/home/noaro/mtm/ex1/ex1-1/pq_example_tests.c" "/home/noaro/mtm/ex1/ex1-1/build/CMakeFiles/ex1_queue.dir/pq_example_tests.c.o"
+  "/home/noaro/mtm/ex1/ex1-1/priority_queue.c" "/home/noaro/mtm/ex1/ex1-1/build/CMakeFiles/ex1_queue.dir/priority_queue.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

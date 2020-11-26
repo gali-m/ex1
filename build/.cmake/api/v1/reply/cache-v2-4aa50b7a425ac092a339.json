@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/gali/mtm/ex1/build"
+			"value" : "/home/noaro/mtm/ex1/ex1-1/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -491,7 +491,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/gali/mtm/ex1"
+			"value" : "/home/noaro/mtm/ex1/ex1-1"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1087,7 +1087,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/gali/mtm/ex1/build"
+			"value" : "/home/noaro/mtm/ex1/ex1-1/build"
 		},
 		{
 			"name" : "ex1_SOURCE_DIR",
@@ -1099,7 +1099,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/gali/mtm/ex1"
+			"value" : "/home/noaro/mtm/ex1/ex1-1"
 		}
 	],
 	"kind" : "cache",
