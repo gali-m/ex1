@@ -1,0 +1,1 @@
+/usr/bin/gcc -std=c99 --pedantic-errors -Wall -Werror -g  -rdynamic CMakeFiles/test.dir/test.c.o  -o test 
