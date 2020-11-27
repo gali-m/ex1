@@ -1,12 +1,17 @@
 [
 {
   "directory": "/home/gali/mtm/ex1/build",
-  "command": "/usr/local/bin/gcc   -std=c99 --pedantic-errors -Wall -Werror -g   -o CMakeFiles/ex1_queue.dir/priority_queue.c.o   -c /home/gali/mtm/ex1/priority_queue.c",
+  "command": "/usr/local/bin/gcc   -std=c99 --pedantic-errors -Wall -Werror -g   -o CMakeFiles/ex1.dir/priority_queue.c.o   -c /home/gali/mtm/ex1/priority_queue.c",
   "file": "/home/gali/mtm/ex1/priority_queue.c"
 },
 {
   "directory": "/home/gali/mtm/ex1/build",
-  "command": "/usr/local/bin/gcc   -std=c99 --pedantic-errors -Wall -Werror -g   -o CMakeFiles/ex1_queue.dir/pq_example_tests.c.o   -c /home/gali/mtm/ex1/pq_example_tests.c",
+  "command": "/usr/local/bin/gcc   -std=c99 --pedantic-errors -Wall -Werror -g   -o CMakeFiles/ex1.dir/pq_example_tests.c.o   -c /home/gali/mtm/ex1/pq_example_tests.c",
   "file": "/home/gali/mtm/ex1/pq_example_tests.c"
+},
+{
+  "directory": "/home/gali/mtm/ex1/build",
+  "command": "/usr/local/bin/gcc   -std=c99 --pedantic-errors -Wall -Werror -g   -o CMakeFiles/ex1.dir/date.c.o   -c /home/gali/mtm/ex1/date.c",
+  "file": "/home/gali/mtm/ex1/date.c"
 }
 ]

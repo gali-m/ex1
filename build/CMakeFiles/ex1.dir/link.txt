@@ -1,0 +1,1 @@
+/usr/local/bin/gcc -std=c99 --pedantic-errors -Wall -Werror -g  -rdynamic CMakeFiles/ex1.dir/priority_queue.c.o CMakeFiles/ex1.dir/pq_example_tests.c.o CMakeFiles/ex1.dir/date.c.o  -o ex1 

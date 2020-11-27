@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "ex1_queue"
+			"path" : "ex1"
 		}
 	],
 	"backtrace" : 1,
@@ -42,11 +42,12 @@
 			"sourceIndexes" : 
 			[
 				0,
-				1
+				1,
+				2
 			]
 		}
 	],
-	"id" : "ex1_queue::@6890427a1f51a3e7e1df",
+	"id" : "ex1::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -62,8 +63,8 @@
 		],
 		"language" : "C"
 	},
-	"name" : "ex1_queue",
-	"nameOnDisk" : "ex1_queue",
+	"name" : "ex1",
+	"nameOnDisk" : "ex1",
 	"paths" : 
 	{
 		"build" : ".",
@@ -76,7 +77,8 @@
 			"sourceIndexes" : 
 			[
 				0,
-				1
+				1,
+				2
 			]
 		}
 	],
@@ -92,6 +94,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "pq_example_tests.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "date.c",
 			"sourceGroupIndex" : 0
 		}
 	],

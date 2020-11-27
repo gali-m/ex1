@@ -7,4 +7,4 @@ set(MTM_FLAGS_RELEASE "${MTM_FLAGS_DEBUG} -DNDEBUG")
 
 set(CMAKE_C_FLAGS ${MTM_FLAGS_DEBUG})
 
-add_executable(ex1_queue priority_queue.c pq_example_tests.c) 
+add_executable(ex1 priority_queue.c pq_example_tests.c date.c) 

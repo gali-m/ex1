@@ -128,17 +128,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named ex1_queue
+# Target rules for targets named ex1
 
 # Build rule for target.
-ex1_queue: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ex1_queue
-.PHONY : ex1_queue
+ex1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ex1
+.PHONY : ex1
 
 # fast build rule for target.
-ex1_queue/fast:
-	$(MAKE) -f CMakeFiles/ex1_queue.dir/build.make CMakeFiles/ex1_queue.dir/build
-.PHONY : ex1_queue/fast
+ex1/fast:
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/build
+.PHONY : ex1/fast
+
+date.o: date.c.o
+
+.PHONY : date.o
+
+# target to build an object file
+date.c.o:
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/date.c.o
+.PHONY : date.c.o
+
+date.i: date.c.i
+
+.PHONY : date.i
+
+# target to preprocess a source file
+date.c.i:
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/date.c.i
+.PHONY : date.c.i
+
+date.s: date.c.s
+
+.PHONY : date.s
+
+# target to generate assembly for a file
+date.c.s:
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/date.c.s
+.PHONY : date.c.s
 
 pq_example_tests.o: pq_example_tests.c.o
 
@@ -146,7 +173,7 @@ pq_example_tests.o: pq_example_tests.c.o
 
 # target to build an object file
 pq_example_tests.c.o:
-	$(MAKE) -f CMakeFiles/ex1_queue.dir/build.make CMakeFiles/ex1_queue.dir/pq_example_tests.c.o
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/pq_example_tests.c.o
 .PHONY : pq_example_tests.c.o
 
 pq_example_tests.i: pq_example_tests.c.i
@@ -155,7 +182,7 @@ pq_example_tests.i: pq_example_tests.c.i
 
 # target to preprocess a source file
 pq_example_tests.c.i:
-	$(MAKE) -f CMakeFiles/ex1_queue.dir/build.make CMakeFiles/ex1_queue.dir/pq_example_tests.c.i
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/pq_example_tests.c.i
 .PHONY : pq_example_tests.c.i
 
 pq_example_tests.s: pq_example_tests.c.s
@@ -164,7 +191,7 @@ pq_example_tests.s: pq_example_tests.c.s
 
 # target to generate assembly for a file
 pq_example_tests.c.s:
-	$(MAKE) -f CMakeFiles/ex1_queue.dir/build.make CMakeFiles/ex1_queue.dir/pq_example_tests.c.s
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/pq_example_tests.c.s
 .PHONY : pq_example_tests.c.s
 
 priority_queue.o: priority_queue.c.o
@@ -173,7 +200,7 @@ priority_queue.o: priority_queue.c.o
 
 # target to build an object file
 priority_queue.c.o:
-	$(MAKE) -f CMakeFiles/ex1_queue.dir/build.make CMakeFiles/ex1_queue.dir/priority_queue.c.o
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/priority_queue.c.o
 .PHONY : priority_queue.c.o
 
 priority_queue.i: priority_queue.c.i
@@ -182,7 +209,7 @@ priority_queue.i: priority_queue.c.i
 
 # target to preprocess a source file
 priority_queue.c.i:
-	$(MAKE) -f CMakeFiles/ex1_queue.dir/build.make CMakeFiles/ex1_queue.dir/priority_queue.c.i
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/priority_queue.c.i
 .PHONY : priority_queue.c.i
 
 priority_queue.s: priority_queue.c.s
@@ -191,7 +218,7 @@ priority_queue.s: priority_queue.c.s
 
 # target to generate assembly for a file
 priority_queue.c.s:
-	$(MAKE) -f CMakeFiles/ex1_queue.dir/build.make CMakeFiles/ex1_queue.dir/priority_queue.c.s
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/priority_queue.c.s
 .PHONY : priority_queue.c.s
 
 # Help Target
@@ -202,7 +229,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... ex1_queue"
+	@echo "... ex1"
+	@echo "... date.o"
+	@echo "... date.i"
+	@echo "... date.s"
 	@echo "... pq_example_tests.o"
 	@echo "... pq_example_tests.i"
 	@echo "... pq_example_tests.s"

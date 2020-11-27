@@ -41,5 +41,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/ex1_queue.dir/DependInfo.cmake"
+  "CMakeFiles/ex1.dir/DependInfo.cmake"
   )
