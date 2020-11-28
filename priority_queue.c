@@ -239,11 +239,15 @@ PriorityQueueResult pqChangePriority(PriorityQueue queue, PQElement element,
         if(queue->equal_elements(queue->element_list->element_data, element) &&
             queue->compare_priorities(queue->element_list->element_priority, old_priority))
         {
+            queue->free_element(queue->element_list->element_data);
+            queue->free_priority(queue->element_list->element_priority);
             queue->element_list = queue->element_list->next;
+
             if(queue->compare_priorities(old_priority, new_priority))
             {
                 return PQ_SUCCESS;
             }
+
             return pqInsert(queue, element, new_priority);    
         }
 
@@ -253,16 +257,43 @@ PriorityQueueResult pqChangePriority(PriorityQueue queue, PQElement element,
     if(queue->equal_elements(queue->element_list->element_data, element) &&
             queue->compare_priorities(queue->element_list->element_priority, old_priority))
     {
+        queue->free_element(queue->element_list->element_data);
+        queue->free_priority(queue->element_list->element_priority);
+        free(queue->element_list);
         queue->element_list = NULL;
+
         if(queue->compare_priorities(old_priority, new_priority))
         {
             return PQ_SUCCESS;
         }
+
         return pqInsert(queue, element, new_priority);
     }
 
-
     return PQ_ELEMENT_DOES_NOT_EXISTS;
-
 }
 
+
+PriorityQueueResult pqRemove(PriorityQueue queue)
+{
+    if (queue == NULL)
+    {
+        return PQ_NULL_ARGUMENT;
+    }
+
+    if(queue->element_list == NULL)
+    {
+        // TODO: NULL or SECCESS ?!?!
+        return PQ_NULL_ARGUMENT;
+    }
+
+    ElementNode next_element = queue->element_list->next;
+
+    queue->free_element(queue->element_list->element_data);
+    queue->free_priority(queue->element_list->element_priority);
+    free(queue->element_list);
+    queue->element_list = next_element;
+
+    return PQ_SUCCESS;
+
+}
