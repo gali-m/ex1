@@ -4,10 +4,6 @@
 CMakeFiles/ex1.dir/date.c.o: ../date.c
 CMakeFiles/ex1.dir/date.c.o: ../date.h
 
-CMakeFiles/ex1.dir/pq_example_tests.c.o: ../pq_example_tests.c
-CMakeFiles/ex1.dir/pq_example_tests.c.o: ../priority_queue.h
-CMakeFiles/ex1.dir/pq_example_tests.c.o: ../test_utilities.h
-
-CMakeFiles/ex1.dir/priority_queue.c.o: ../priority_queue.c
-CMakeFiles/ex1.dir/priority_queue.c.o: ../priority_queue.h
+CMakeFiles/ex1.dir/date_tests.c.o: ../date.h
+CMakeFiles/ex1.dir/date_tests.c.o: ../date_tests.c
 

@@ -42,8 +42,7 @@
 			"sourceIndexes" : 
 			[
 				0,
-				1,
-				2
+				1
 			]
 		}
 	],
@@ -77,8 +76,7 @@
 			"sourceIndexes" : 
 			[
 				0,
-				1,
-				2
+				1
 			]
 		}
 	],
@@ -87,19 +85,13 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "priority_queue.c",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "pq_example_tests.c",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
 			"path" : "date.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "date_tests.c",
 			"sourceGroupIndex" : 0
 		}
 	],
