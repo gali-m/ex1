@@ -21,6 +21,8 @@ struct PriorityQueue_t
     FreePQElementPriority free_priority;
     ComparePQElementPriorities compare_priorities;
     ElementNode element_list;
+    ElementNode iterator;
+    bool is_iterator_undefined;
 };
 
 PriorityQueue pqCreate(CopyPQElement copy_element,
@@ -50,6 +52,8 @@ PriorityQueue pqCreate(CopyPQElement copy_element,
     new_priority_queue->free_priority = free_priority;
     new_priority_queue->compare_priorities = compare_priorities;
     new_priority_queue->element_list = NULL;
+    new_priority_queue->iterator = NULL;
+    new_priority_queue->is_iterator_undefined=false;
 
     return new_priority_queue;
 
@@ -132,6 +136,8 @@ PriorityQueue pqCopy(PriorityQueue queue)
     
     new_priority_queue->element_list = copyElementList(queue->element_list, new_priority_queue->copy_element,
                                                         queue->copy_priority);
+    
+    new_priority_queue->is_iterator_undefined = true;
 
     return new_priority_queue;
 }
@@ -191,6 +197,8 @@ PriorityQueueResult pqInsert(PriorityQueue queue, PQElement element, PQElementPr
     new_element->element_data = queue->copy_element(element);
     new_element->element_priority = queue->copy_priority(priority);
 
+    queue->is_iterator_undefined = true;
+
     // check if need to be in the first place - the highest priority
     if(queue->element_list == NULL || queue->element_list->element_priority <= new_element->element_priority)
     {
@@ -244,6 +252,8 @@ PriorityQueueResult pqChangePriority(PriorityQueue queue, PQElement element,
         return PQ_NULL_ARGUMENT;
     }
 
+    queue->is_iterator_undefined = true;
+
     if(queue->element_list == NULL)
     {
         return PQ_ELEMENT_DOES_NOT_EXISTS;
@@ -290,6 +300,8 @@ PriorityQueueResult pqRemove(PriorityQueue queue)
         return PQ_NULL_ARGUMENT;
     }
 
+    queue->is_iterator_undefined = true;
+
     if(queue->element_list == NULL)
     {
         // TODO: NULL or SECCESS ?!?!
@@ -312,6 +324,7 @@ PriorityQueueResult pqRemoveElement(PriorityQueue queue, PQElement element)
         return PQ_NULL_ARGUMENT;
     }
 
+    queue->is_iterator_undefined = true;
     
     // check if the first element is the one that need to remove
     if(queue->equal_elements(queue->element_list->element_data, element))
@@ -348,4 +361,28 @@ PriorityQueueResult pqClear(PriorityQueue queue)
 
     return PQ_SUCCESS;
 
+}
+
+
+PQElement pqGetFirst(PriorityQueue queue)
+{
+    if (queue == NULL || queue->element_list == NULL)
+    {
+        return NULL;
+    }
+
+    queue->iterator = queue->element_list;
+    queue->is_iterator_undefined = false;
+    return queue->iterator->element_data;
+}
+
+PQElement pqGetNext(PriorityQueue queue)
+{
+    if (queue == NULL || queue->iterator || queue->is_iterator_undefined)
+    {
+        return NULL;
+    }
+
+    queue->iterator = queue->iterator->next;
+    return queue->iterator->element_data;
 }
