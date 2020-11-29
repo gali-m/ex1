@@ -37,7 +37,7 @@ bool testPQCreateDestroy() {
 
     PriorityQueue pq2 = pqCopy(pq);
     ASSERT_TEST(pq2 != NULL, returnPQCreateDestroy);
-    printf("size: %d\n", pqGetSize(pq));
+    // printf("size: %d\n", pqGetSize(pq));
     ASSERT_TEST(pqGetSize(pq) == 0,destroyPQCreateDestroy);
     // ASSERT_TEST(pqGetFirst(pq) == NULL,destroyPQCreateDestroy);
 
@@ -48,18 +48,18 @@ returnPQCreateDestroy:
     return result;
 }
 
-// bool testPQInsertAndSize() {
-//     bool result = true;
-//     PriorityQueue pq = pqCreate(copyIntGeneric, freeIntGeneric, equalIntsGeneric, copyIntGeneric, freeIntGeneric, compareIntsGeneric);
-//     ASSERT_TEST(pqGetSize(pq) == 0,destroyPQInsertAndSize);
-//     int to_add = 1;
-//     ASSERT_TEST(pqInsert(pq, &to_add, &to_add) == PQ_SUCCESS,destroyPQInsertAndSize);
-//     ASSERT_TEST(pqGetSize(pq) == 1,destroyPQInsertAndSize);
+bool testPQInsertAndSize() {
+    bool result = true;
+    PriorityQueue pq = pqCreate(copyIntGeneric, freeIntGeneric, equalIntsGeneric, copyIntGeneric, freeIntGeneric, compareIntsGeneric);
+    ASSERT_TEST(pqGetSize(pq) == 0,destroyPQInsertAndSize);
+    int to_add = 1;
+    ASSERT_TEST(pqInsert(pq, &to_add, &to_add) == PQ_SUCCESS,destroyPQInsertAndSize);
+    ASSERT_TEST(pqGetSize(pq) == 1,destroyPQInsertAndSize);
 
-// destroyPQInsertAndSize:
-//     pqDestroy(pq);
-//     return result;
-// }
+destroyPQInsertAndSize:
+    pqDestroy(pq);
+    return result;
+}
 
 // bool testPQGetFirst() {
 //     bool result = true;
@@ -135,7 +135,8 @@ int main(int argc, char *argv[]) {
 
     // RUN_TEST(tests[test_idx - 1], testNames[test_idx - 1]);
 
-    printf("%d\n",testPQCreateDestroy());
+    printf("testPQCreateDestroy: %d\n",testPQCreateDestroy());
+    printf("testPQInsertAndSize: %d\n",testPQInsertAndSize());
 
     return 0;
 }
