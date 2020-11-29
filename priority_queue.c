@@ -81,7 +81,8 @@ void pqDestroy(PriorityQueue queue)
     free(queue);
 }
 
-static ElementNode copyElementList(ElementNode element_list, CopyPQElement copy_element, CopyPQElementPriority copy_priority)
+static ElementNode copyElementList(ElementNode element_list, CopyPQElement copy_element, 
+                                   CopyPQElementPriority copy_priority)
 {
     if (element_list == NULL)
     {
@@ -128,7 +129,8 @@ PriorityQueue pqCopy(PriorityQueue queue)
         return NULL;
     }
 
-    new_priority_queue = pqCreate(queue->copy_element, queue->free_element, queue->equal_elements, queue->copy_priority, queue->free_priority, queue->compare_priorities);
+    new_priority_queue = pqCreate(queue->copy_element, queue->free_element, queue->equal_elements, 
+                                  queue->copy_priority, queue->free_priority, queue->compare_priorities);
     if(new_priority_queue == NULL)
     {
         return NULL;
