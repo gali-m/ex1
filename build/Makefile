@@ -65,10 +65,10 @@ RM = /home/mtm/cmake-3.17.0-Linux-x86_64/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/noaro/mtm/ex1/ex1-1
+CMAKE_SOURCE_DIR = /home/noaro/mtm/ex1/ex1-2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/noaro/mtm/ex1/ex1-1/build
+CMAKE_BINARY_DIR = /home/noaro/mtm/ex1/ex1-2/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -97,9 +97,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/noaro/mtm/ex1/ex1-1/build/CMakeFiles /home/noaro/mtm/ex1/ex1-1/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/noaro/mtm/ex1/ex1-2/build/CMakeFiles /home/noaro/mtm/ex1/ex1-2/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/noaro/mtm/ex1/ex1-1/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/noaro/mtm/ex1/ex1-2/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -140,33 +140,6 @@ ex1_queue/fast:
 	$(MAKE) -f CMakeFiles/ex1_queue.dir/build.make CMakeFiles/ex1_queue.dir/build
 .PHONY : ex1_queue/fast
 
-pq_example_tests.o: pq_example_tests.c.o
-
-.PHONY : pq_example_tests.o
-
-# target to build an object file
-pq_example_tests.c.o:
-	$(MAKE) -f CMakeFiles/ex1_queue.dir/build.make CMakeFiles/ex1_queue.dir/pq_example_tests.c.o
-.PHONY : pq_example_tests.c.o
-
-pq_example_tests.i: pq_example_tests.c.i
-
-.PHONY : pq_example_tests.i
-
-# target to preprocess a source file
-pq_example_tests.c.i:
-	$(MAKE) -f CMakeFiles/ex1_queue.dir/build.make CMakeFiles/ex1_queue.dir/pq_example_tests.c.i
-.PHONY : pq_example_tests.c.i
-
-pq_example_tests.s: pq_example_tests.c.s
-
-.PHONY : pq_example_tests.s
-
-# target to generate assembly for a file
-pq_example_tests.c.s:
-	$(MAKE) -f CMakeFiles/ex1_queue.dir/build.make CMakeFiles/ex1_queue.dir/pq_example_tests.c.s
-.PHONY : pq_example_tests.c.s
-
 priority_queue.o: priority_queue.c.o
 
 .PHONY : priority_queue.o
@@ -194,6 +167,33 @@ priority_queue.c.s:
 	$(MAKE) -f CMakeFiles/ex1_queue.dir/build.make CMakeFiles/ex1_queue.dir/priority_queue.c.s
 .PHONY : priority_queue.c.s
 
+test_online.o: test_online.c.o
+
+.PHONY : test_online.o
+
+# target to build an object file
+test_online.c.o:
+	$(MAKE) -f CMakeFiles/ex1_queue.dir/build.make CMakeFiles/ex1_queue.dir/test_online.c.o
+.PHONY : test_online.c.o
+
+test_online.i: test_online.c.i
+
+.PHONY : test_online.i
+
+# target to preprocess a source file
+test_online.c.i:
+	$(MAKE) -f CMakeFiles/ex1_queue.dir/build.make CMakeFiles/ex1_queue.dir/test_online.c.i
+.PHONY : test_online.c.i
+
+test_online.s: test_online.c.s
+
+.PHONY : test_online.s
+
+# target to generate assembly for a file
+test_online.c.s:
+	$(MAKE) -f CMakeFiles/ex1_queue.dir/build.make CMakeFiles/ex1_queue.dir/test_online.c.s
+.PHONY : test_online.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -203,12 +203,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... ex1_queue"
-	@echo "... pq_example_tests.o"
-	@echo "... pq_example_tests.i"
-	@echo "... pq_example_tests.s"
 	@echo "... priority_queue.o"
 	@echo "... priority_queue.i"
 	@echo "... priority_queue.s"
+	@echo "... test_online.o"
+	@echo "... test_online.i"
+	@echo "... test_online.s"
 .PHONY : help
 
 
