@@ -55,6 +55,9 @@ bool testPQInsertAndSize() {
     int to_add = 1;
     ASSERT_TEST(pqInsert(pq, &to_add, &to_add) == PQ_SUCCESS,destroyPQInsertAndSize);
     ASSERT_TEST(pqGetSize(pq) == 1,destroyPQInsertAndSize);
+    int to_add2 = 2;
+    ASSERT_TEST(pqInsert(pq, &to_add2, &to_add2) == PQ_SUCCESS,destroyPQInsertAndSize);
+    ASSERT_TEST(pqGetSize(pq) == 2,destroyPQInsertAndSize);
 
 destroyPQInsertAndSize:
     pqDestroy(pq);
@@ -134,6 +137,8 @@ int main(int argc, char *argv[]) {
     }
 
     RUN_TEST(tests[test_idx - 1], testNames[test_idx - 1]);
+
+    // _CrtDumpMemoryLeaks();
 
     // printf("testPQCreateDestroy: %d\n",testPQCreateDestroy());
     // printf("testPQInsertAndSize: %d\n",testPQInsertAndSize());
