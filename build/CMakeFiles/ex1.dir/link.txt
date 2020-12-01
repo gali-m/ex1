@@ -1,1 +1,1 @@
-/usr/local/bin/gcc -std=c99 --pedantic-errors -Wall -Werror -g  -rdynamic CMakeFiles/ex1.dir/date.c.o CMakeFiles/ex1.dir/date_tests.c.o  -o ex1 
+/usr/local/bin/gcc -std=c99 --pedantic-errors -Wall -Werror -g  -rdynamic CMakeFiles/ex1.dir/date.c.o CMakeFiles/ex1.dir/priority_queue.c.o CMakeFiles/ex1.dir/event_manager.c.o CMakeFiles/ex1.dir/event_manager_example_tests.c.o  -o ex1   -L/home/gali/mtm/ex1/.  -Wl,-rpath,/home/gali/mtm/ex1/. -Wl,-Bstatic -lpriority_queue -Wl,-Bdynamic 

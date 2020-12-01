@@ -167,32 +167,86 @@ date.c.s:
 	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/date.c.s
 .PHONY : date.c.s
 
-date_tests.o: date_tests.c.o
+event_manager.o: event_manager.c.o
 
-.PHONY : date_tests.o
+.PHONY : event_manager.o
 
 # target to build an object file
-date_tests.c.o:
-	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/date_tests.c.o
-.PHONY : date_tests.c.o
+event_manager.c.o:
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/event_manager.c.o
+.PHONY : event_manager.c.o
 
-date_tests.i: date_tests.c.i
+event_manager.i: event_manager.c.i
 
-.PHONY : date_tests.i
+.PHONY : event_manager.i
 
 # target to preprocess a source file
-date_tests.c.i:
-	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/date_tests.c.i
-.PHONY : date_tests.c.i
+event_manager.c.i:
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/event_manager.c.i
+.PHONY : event_manager.c.i
 
-date_tests.s: date_tests.c.s
+event_manager.s: event_manager.c.s
 
-.PHONY : date_tests.s
+.PHONY : event_manager.s
 
 # target to generate assembly for a file
-date_tests.c.s:
-	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/date_tests.c.s
-.PHONY : date_tests.c.s
+event_manager.c.s:
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/event_manager.c.s
+.PHONY : event_manager.c.s
+
+event_manager_example_tests.o: event_manager_example_tests.c.o
+
+.PHONY : event_manager_example_tests.o
+
+# target to build an object file
+event_manager_example_tests.c.o:
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/event_manager_example_tests.c.o
+.PHONY : event_manager_example_tests.c.o
+
+event_manager_example_tests.i: event_manager_example_tests.c.i
+
+.PHONY : event_manager_example_tests.i
+
+# target to preprocess a source file
+event_manager_example_tests.c.i:
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/event_manager_example_tests.c.i
+.PHONY : event_manager_example_tests.c.i
+
+event_manager_example_tests.s: event_manager_example_tests.c.s
+
+.PHONY : event_manager_example_tests.s
+
+# target to generate assembly for a file
+event_manager_example_tests.c.s:
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/event_manager_example_tests.c.s
+.PHONY : event_manager_example_tests.c.s
+
+priority_queue.o: priority_queue.c.o
+
+.PHONY : priority_queue.o
+
+# target to build an object file
+priority_queue.c.o:
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/priority_queue.c.o
+.PHONY : priority_queue.c.o
+
+priority_queue.i: priority_queue.c.i
+
+.PHONY : priority_queue.i
+
+# target to preprocess a source file
+priority_queue.c.i:
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/priority_queue.c.i
+.PHONY : priority_queue.c.i
+
+priority_queue.s: priority_queue.c.s
+
+.PHONY : priority_queue.s
+
+# target to generate assembly for a file
+priority_queue.c.s:
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/priority_queue.c.s
+.PHONY : priority_queue.c.s
 
 # Help Target
 help:
@@ -206,9 +260,15 @@ help:
 	@echo "... date.o"
 	@echo "... date.i"
 	@echo "... date.s"
-	@echo "... date_tests.o"
-	@echo "... date_tests.i"
-	@echo "... date_tests.s"
+	@echo "... event_manager.o"
+	@echo "... event_manager.i"
+	@echo "... event_manager.s"
+	@echo "... event_manager_example_tests.o"
+	@echo "... event_manager_example_tests.i"
+	@echo "... event_manager_example_tests.s"
+	@echo "... priority_queue.o"
+	@echo "... priority_queue.i"
+	@echo "... priority_queue.s"
 .PHONY : help
 
 

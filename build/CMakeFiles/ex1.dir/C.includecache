@@ -6,15 +6,27 @@
 
 #IncludeRegexTransform: 
 
-/home/gali/mtm/ex1/date.c
-stdlib.h
--
+/home/gali/mtm/ex1/date.h
 stdbool.h
 -
+
+/home/gali/mtm/ex1/event_manager.c
+date.h
+/home/gali/mtm/ex1/date.h
+priority_queue.h
+/home/gali/mtm/ex1/priority_queue.h
+event_manager.h
+/home/gali/mtm/ex1/event_manager.h
+stdlib.h
+-
+string.h
+-
+
+/home/gali/mtm/ex1/event_manager.h
 date.h
 /home/gali/mtm/ex1/date.h
 
-/home/gali/mtm/ex1/date.h
+/home/gali/mtm/ex1/priority_queue.h
 stdbool.h
 -
 

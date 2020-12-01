@@ -87,32 +87,62 @@ CMakeFiles/ex1.dir/date.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ex1.dir/date.c.s"
 	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gali/mtm/ex1/date.c -o CMakeFiles/ex1.dir/date.c.s
 
-CMakeFiles/ex1.dir/date_tests.c.o: CMakeFiles/ex1.dir/flags.make
-CMakeFiles/ex1.dir/date_tests.c.o: ../date_tests.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gali/mtm/ex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/ex1.dir/date_tests.c.o"
-	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ex1.dir/date_tests.c.o   -c /home/gali/mtm/ex1/date_tests.c
+CMakeFiles/ex1.dir/priority_queue.c.o: CMakeFiles/ex1.dir/flags.make
+CMakeFiles/ex1.dir/priority_queue.c.o: ../priority_queue.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gali/mtm/ex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/ex1.dir/priority_queue.c.o"
+	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ex1.dir/priority_queue.c.o   -c /home/gali/mtm/ex1/priority_queue.c
 
-CMakeFiles/ex1.dir/date_tests.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ex1.dir/date_tests.c.i"
-	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gali/mtm/ex1/date_tests.c > CMakeFiles/ex1.dir/date_tests.c.i
+CMakeFiles/ex1.dir/priority_queue.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ex1.dir/priority_queue.c.i"
+	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gali/mtm/ex1/priority_queue.c > CMakeFiles/ex1.dir/priority_queue.c.i
 
-CMakeFiles/ex1.dir/date_tests.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ex1.dir/date_tests.c.s"
-	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gali/mtm/ex1/date_tests.c -o CMakeFiles/ex1.dir/date_tests.c.s
+CMakeFiles/ex1.dir/priority_queue.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ex1.dir/priority_queue.c.s"
+	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gali/mtm/ex1/priority_queue.c -o CMakeFiles/ex1.dir/priority_queue.c.s
+
+CMakeFiles/ex1.dir/event_manager.c.o: CMakeFiles/ex1.dir/flags.make
+CMakeFiles/ex1.dir/event_manager.c.o: ../event_manager.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gali/mtm/ex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/ex1.dir/event_manager.c.o"
+	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ex1.dir/event_manager.c.o   -c /home/gali/mtm/ex1/event_manager.c
+
+CMakeFiles/ex1.dir/event_manager.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ex1.dir/event_manager.c.i"
+	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gali/mtm/ex1/event_manager.c > CMakeFiles/ex1.dir/event_manager.c.i
+
+CMakeFiles/ex1.dir/event_manager.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ex1.dir/event_manager.c.s"
+	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gali/mtm/ex1/event_manager.c -o CMakeFiles/ex1.dir/event_manager.c.s
+
+CMakeFiles/ex1.dir/event_manager_example_tests.c.o: CMakeFiles/ex1.dir/flags.make
+CMakeFiles/ex1.dir/event_manager_example_tests.c.o: ../event_manager_example_tests.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gali/mtm/ex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/ex1.dir/event_manager_example_tests.c.o"
+	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ex1.dir/event_manager_example_tests.c.o   -c /home/gali/mtm/ex1/event_manager_example_tests.c
+
+CMakeFiles/ex1.dir/event_manager_example_tests.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ex1.dir/event_manager_example_tests.c.i"
+	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gali/mtm/ex1/event_manager_example_tests.c > CMakeFiles/ex1.dir/event_manager_example_tests.c.i
+
+CMakeFiles/ex1.dir/event_manager_example_tests.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ex1.dir/event_manager_example_tests.c.s"
+	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gali/mtm/ex1/event_manager_example_tests.c -o CMakeFiles/ex1.dir/event_manager_example_tests.c.s
 
 # Object files for target ex1
 ex1_OBJECTS = \
 "CMakeFiles/ex1.dir/date.c.o" \
-"CMakeFiles/ex1.dir/date_tests.c.o"
+"CMakeFiles/ex1.dir/priority_queue.c.o" \
+"CMakeFiles/ex1.dir/event_manager.c.o" \
+"CMakeFiles/ex1.dir/event_manager_example_tests.c.o"
 
 # External object files for target ex1
 ex1_EXTERNAL_OBJECTS =
 
 ex1: CMakeFiles/ex1.dir/date.c.o
-ex1: CMakeFiles/ex1.dir/date_tests.c.o
+ex1: CMakeFiles/ex1.dir/priority_queue.c.o
+ex1: CMakeFiles/ex1.dir/event_manager.c.o
+ex1: CMakeFiles/ex1.dir/event_manager_example_tests.c.o
 ex1: CMakeFiles/ex1.dir/build.make
 ex1: CMakeFiles/ex1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gali/mtm/ex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable ex1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gali/mtm/ex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable ex1"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ex1.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
