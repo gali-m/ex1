@@ -100,8 +100,14 @@ static PriorityQueueResult removeElementNode(PriorityQueue queue, ElementNode el
 
 void pqDestroy(PriorityQueue queue)
 {
-    if (queue != NULL || queue->element_list != NULL)
+    if (queue == NULL)
     {
+        return;
+    }
+
+    if(queue->element_list == NULL)
+    {
+        free(queue);
         return;
     }
 
@@ -115,7 +121,7 @@ void pqDestroy(PriorityQueue queue)
     free(queue);
 }
 
-static ElementNode copyElementList2(PriorityQueue queue)
+static ElementNode copyElementList(PriorityQueue queue)
 {
     if (queue == NULL || queue->element_list == NULL)
     {
@@ -144,20 +150,14 @@ PriorityQueue pqCopy(PriorityQueue queue)
         return NULL;
     }
 
-    PriorityQueue new_priority_queue = (PriorityQueue)malloc(sizeof(struct PriorityQueue_t));
-    if (!new_priority_queue)
-    {
-        return NULL;
-    }
-
-    new_priority_queue = pqCreate(queue->copy_element, queue->free_element, queue->equal_elements, 
+    PriorityQueue new_priority_queue = pqCreate(queue->copy_element, queue->free_element, queue->equal_elements, 
                                   queue->copy_priority, queue->free_priority, queue->compare_priorities);
     if(new_priority_queue == NULL)
     {
         return NULL;
     }
 
-    new_priority_queue->element_list = copyElementList2(queue);
+    new_priority_queue->element_list = copyElementList(queue);
     
     new_priority_queue->is_iterator_undefined = true;
     queue->is_iterator_undefined = true;
@@ -182,7 +182,6 @@ int pqGetSize(PriorityQueue queue)
     }
 
     return elements_size;
-
 }
 
 bool pqContains(PriorityQueue queue, PQElement element)
