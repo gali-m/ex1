@@ -7,6 +7,8 @@ set(CMAKE_DEPENDS_CHECK_C
   "/home/gali/mtm/ex1/date.c" "/home/gali/mtm/ex1/build/CMakeFiles/ex1.dir/date.c.o"
   "/home/gali/mtm/ex1/event_manager.c" "/home/gali/mtm/ex1/build/CMakeFiles/ex1.dir/event_manager.c.o"
   "/home/gali/mtm/ex1/event_manager_example_tests.c" "/home/gali/mtm/ex1/build/CMakeFiles/ex1.dir/event_manager_example_tests.c.o"
+  "/home/gali/mtm/ex1/events_pq_helper.c" "/home/gali/mtm/ex1/build/CMakeFiles/ex1.dir/events_pq_helper.c.o"
+  "/home/gali/mtm/ex1/members_pq_helper.c" "/home/gali/mtm/ex1/build/CMakeFiles/ex1.dir/members_pq_helper.c.o"
   "/home/gali/mtm/ex1/priority_queue.c" "/home/gali/mtm/ex1/build/CMakeFiles/ex1.dir/priority_queue.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")

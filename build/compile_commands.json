@@ -11,6 +11,16 @@
 },
 {
   "directory": "/home/gali/mtm/ex1/build",
+  "command": "/usr/local/bin/gcc   -std=c99 --pedantic-errors -Wall -Werror -g   -o CMakeFiles/ex1.dir/events_pq_helper.c.o   -c /home/gali/mtm/ex1/events_pq_helper.c",
+  "file": "/home/gali/mtm/ex1/events_pq_helper.c"
+},
+{
+  "directory": "/home/gali/mtm/ex1/build",
+  "command": "/usr/local/bin/gcc   -std=c99 --pedantic-errors -Wall -Werror -g   -o CMakeFiles/ex1.dir/members_pq_helper.c.o   -c /home/gali/mtm/ex1/members_pq_helper.c",
+  "file": "/home/gali/mtm/ex1/members_pq_helper.c"
+},
+{
+  "directory": "/home/gali/mtm/ex1/build",
   "command": "/usr/local/bin/gcc   -std=c99 --pedantic-errors -Wall -Werror -g   -o CMakeFiles/ex1.dir/event_manager.c.o   -c /home/gali/mtm/ex1/event_manager.c",
   "file": "/home/gali/mtm/ex1/event_manager.c"
 },

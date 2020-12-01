@@ -221,6 +221,60 @@ event_manager_example_tests.c.s:
 	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/event_manager_example_tests.c.s
 .PHONY : event_manager_example_tests.c.s
 
+events_pq_helper.o: events_pq_helper.c.o
+
+.PHONY : events_pq_helper.o
+
+# target to build an object file
+events_pq_helper.c.o:
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/events_pq_helper.c.o
+.PHONY : events_pq_helper.c.o
+
+events_pq_helper.i: events_pq_helper.c.i
+
+.PHONY : events_pq_helper.i
+
+# target to preprocess a source file
+events_pq_helper.c.i:
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/events_pq_helper.c.i
+.PHONY : events_pq_helper.c.i
+
+events_pq_helper.s: events_pq_helper.c.s
+
+.PHONY : events_pq_helper.s
+
+# target to generate assembly for a file
+events_pq_helper.c.s:
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/events_pq_helper.c.s
+.PHONY : events_pq_helper.c.s
+
+members_pq_helper.o: members_pq_helper.c.o
+
+.PHONY : members_pq_helper.o
+
+# target to build an object file
+members_pq_helper.c.o:
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/members_pq_helper.c.o
+.PHONY : members_pq_helper.c.o
+
+members_pq_helper.i: members_pq_helper.c.i
+
+.PHONY : members_pq_helper.i
+
+# target to preprocess a source file
+members_pq_helper.c.i:
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/members_pq_helper.c.i
+.PHONY : members_pq_helper.c.i
+
+members_pq_helper.s: members_pq_helper.c.s
+
+.PHONY : members_pq_helper.s
+
+# target to generate assembly for a file
+members_pq_helper.c.s:
+	$(MAKE) -f CMakeFiles/ex1.dir/build.make CMakeFiles/ex1.dir/members_pq_helper.c.s
+.PHONY : members_pq_helper.c.s
+
 priority_queue.o: priority_queue.c.o
 
 .PHONY : priority_queue.o
@@ -266,6 +320,12 @@ help:
 	@echo "... event_manager_example_tests.o"
 	@echo "... event_manager_example_tests.i"
 	@echo "... event_manager_example_tests.s"
+	@echo "... events_pq_helper.o"
+	@echo "... events_pq_helper.i"
+	@echo "... events_pq_helper.s"
+	@echo "... members_pq_helper.o"
+	@echo "... members_pq_helper.i"
+	@echo "... members_pq_helper.s"
 	@echo "... priority_queue.o"
 	@echo "... priority_queue.i"
 	@echo "... priority_queue.s"

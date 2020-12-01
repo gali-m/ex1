@@ -100,9 +100,35 @@ CMakeFiles/ex1.dir/priority_queue.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ex1.dir/priority_queue.c.s"
 	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gali/mtm/ex1/priority_queue.c -o CMakeFiles/ex1.dir/priority_queue.c.s
 
+CMakeFiles/ex1.dir/events_pq_helper.c.o: CMakeFiles/ex1.dir/flags.make
+CMakeFiles/ex1.dir/events_pq_helper.c.o: ../events_pq_helper.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gali/mtm/ex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/ex1.dir/events_pq_helper.c.o"
+	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ex1.dir/events_pq_helper.c.o   -c /home/gali/mtm/ex1/events_pq_helper.c
+
+CMakeFiles/ex1.dir/events_pq_helper.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ex1.dir/events_pq_helper.c.i"
+	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gali/mtm/ex1/events_pq_helper.c > CMakeFiles/ex1.dir/events_pq_helper.c.i
+
+CMakeFiles/ex1.dir/events_pq_helper.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ex1.dir/events_pq_helper.c.s"
+	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gali/mtm/ex1/events_pq_helper.c -o CMakeFiles/ex1.dir/events_pq_helper.c.s
+
+CMakeFiles/ex1.dir/members_pq_helper.c.o: CMakeFiles/ex1.dir/flags.make
+CMakeFiles/ex1.dir/members_pq_helper.c.o: ../members_pq_helper.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gali/mtm/ex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/ex1.dir/members_pq_helper.c.o"
+	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ex1.dir/members_pq_helper.c.o   -c /home/gali/mtm/ex1/members_pq_helper.c
+
+CMakeFiles/ex1.dir/members_pq_helper.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ex1.dir/members_pq_helper.c.i"
+	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gali/mtm/ex1/members_pq_helper.c > CMakeFiles/ex1.dir/members_pq_helper.c.i
+
+CMakeFiles/ex1.dir/members_pq_helper.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ex1.dir/members_pq_helper.c.s"
+	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gali/mtm/ex1/members_pq_helper.c -o CMakeFiles/ex1.dir/members_pq_helper.c.s
+
 CMakeFiles/ex1.dir/event_manager.c.o: CMakeFiles/ex1.dir/flags.make
 CMakeFiles/ex1.dir/event_manager.c.o: ../event_manager.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gali/mtm/ex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/ex1.dir/event_manager.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gali/mtm/ex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/ex1.dir/event_manager.c.o"
 	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ex1.dir/event_manager.c.o   -c /home/gali/mtm/ex1/event_manager.c
 
 CMakeFiles/ex1.dir/event_manager.c.i: cmake_force
@@ -115,7 +141,7 @@ CMakeFiles/ex1.dir/event_manager.c.s: cmake_force
 
 CMakeFiles/ex1.dir/event_manager_example_tests.c.o: CMakeFiles/ex1.dir/flags.make
 CMakeFiles/ex1.dir/event_manager_example_tests.c.o: ../event_manager_example_tests.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gali/mtm/ex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/ex1.dir/event_manager_example_tests.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gali/mtm/ex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/ex1.dir/event_manager_example_tests.c.o"
 	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ex1.dir/event_manager_example_tests.c.o   -c /home/gali/mtm/ex1/event_manager_example_tests.c
 
 CMakeFiles/ex1.dir/event_manager_example_tests.c.i: cmake_force
@@ -130,6 +156,8 @@ CMakeFiles/ex1.dir/event_manager_example_tests.c.s: cmake_force
 ex1_OBJECTS = \
 "CMakeFiles/ex1.dir/date.c.o" \
 "CMakeFiles/ex1.dir/priority_queue.c.o" \
+"CMakeFiles/ex1.dir/events_pq_helper.c.o" \
+"CMakeFiles/ex1.dir/members_pq_helper.c.o" \
 "CMakeFiles/ex1.dir/event_manager.c.o" \
 "CMakeFiles/ex1.dir/event_manager_example_tests.c.o"
 
@@ -138,11 +166,13 @@ ex1_EXTERNAL_OBJECTS =
 
 ex1: CMakeFiles/ex1.dir/date.c.o
 ex1: CMakeFiles/ex1.dir/priority_queue.c.o
+ex1: CMakeFiles/ex1.dir/events_pq_helper.c.o
+ex1: CMakeFiles/ex1.dir/members_pq_helper.c.o
 ex1: CMakeFiles/ex1.dir/event_manager.c.o
 ex1: CMakeFiles/ex1.dir/event_manager_example_tests.c.o
 ex1: CMakeFiles/ex1.dir/build.make
 ex1: CMakeFiles/ex1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gali/mtm/ex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable ex1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gali/mtm/ex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking C executable ex1"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ex1.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
