@@ -7,94 +7,225 @@
 struct EventManager_t
 {
     Date current_date;
-    PriorityQueue events; // each event's date is it's priority, data = id + name +  priority queue of members (priority = id), order by date, then by input time.
+    PriorityQueue events; // each event's date is it's priority, 
+    // event data = id + name + priority queue of members (priority = id), order by date, then by input time.
     PriorityQueue members; // members - id, name, priority = number of events responsible for (ordered by it)
 };
 
-typedef struct event_element_t
+typedef struct EventElement_t
 {
     char* event_name;
     int event_id;
+    PriorityQueue members;
 } *EventElement;
+
+typedef struct MemberElement_t
+{
+    char* member_name;
+    int member_id;
+} *MemberElement;
 
 //TODO: Static funcs for using priority queue: events by date, members by id, members by num of events.
 //TODO: create funcs as well.
+//TODO: Add members priority queue to event funcs.
 
 
-//functions for events priority queue:
+// Functions for event members priority queue:
 
-static PQElement createEventElement(char* event_name, int event_id)
+static PQElement copyEventMember(PQElement element)
 {
-    EventElement event_element = (EventElement)malloc(sizeof(struct event_element_t));
+    if (!element) {
+        return NULL;
+    }
+
+    int* element_copy = (int*)malloc(sizeof(int));
+    if (!element_copy) {
+        return NULL;
+    }
+
+    *element_copy = *(int*)element;
+
+    return (PQElement)element_copy;
+}
+
+static void freeEventMember(PQElement element)
+{
+    free((int*)(element));
+}
+
+static bool EqualEventMember(PQElement element1, PQElement element2)
+{
+    if (!element1 || !element2) {
+        return false;
+    }
+
+    return ((int*)element1 == (int*)element2);
+}
+
+static int CompareEventMemberPriorities(PQElementPriority priority1, PQElementPriority priority2)
+{
+    if (!priority1 || !priority2 || *(int*)priority1 == *(int*)priority2)
+    {
+        return 0;
+    }
+    return (*(int*)priority1 < *(int*)priority2) ? 1 : -1;
+}
+
+// Functions for events priority queue:
+
+static PQElement createEventElement(char* event_name, int event_id, PriorityQueue members)
+{
+    EventElement event_element = (EventElement)malloc(sizeof(struct EventElement_t));
     if (!event_element) {
         return NULL;
     }
 
     event_element->event_id = event_id;
+    event_element->members = pqCopy(members);
     event_element->event_name = malloc(strlen(event_name) + 1);
     if (!event_element->event_name) {
         return NULL;
     }
+
     strcpy(event_element->event_name, event_name);
+
     return (PQElement)event_element;
 }
 
-static PQElement copyEvenetlement(PQElement element)
+static PQElement copyEventElement(PQElement element)
 {
     if (!element) {
         return NULL;
     }
-    PQElement element_copy = createEventElement(((EventElement)(element))->event_name, ((EventElement)(element))->event_id);
+
+    PQElement element_copy = createEventElement(((EventElement)(element))->event_name,
+                                             ((EventElement)(element))->event_id, ((EventElement)(element))->members);
     if (!element_copy) {
         return NULL;
     }
+
     return (PQElement)element_copy;
 }
 
 static void freeEventElement(PQElement element)
 {
     free(((EventElement)(element))->event_name);
+    pqDestroy(((EventElement)(element))->members);
     free((EventElement)(element));
 }
 
-// static PQElement createEventPriority()
-// {
-//     EventElement event_element = (EventElement)malloc(sizeof(struct event_element_t));
-//     if (!event_element) {
-//         return NULL;
-//     }
+static PQElementPriority CopyEventPriority(PQElementPriority priority)
+{
+    if (!priority) {
+        return NULL;
+    }
 
-//     event_element->event_id = event_id;
-//     event_element->event_name = malloc(strlen(event_name) + 1);
-//     if (!event_element->event_name) {
-//         return NULL;
-//     }
-//     strcpy(event_element->event_name, event_name);
-//     return (PQElement)event_element;
-// }
+    PQElementPriority priority_copy = dateCopy((Date)(priority));
+    if (!priority_copy) {
+        return NULL;
+    }
+    return (PQElementPriority)priority_copy;
+}
 
-// /** Type of function for copying a key element of the priority queue */
-// static PQElementPriority CopyPQElementPriority(PQElementPriority priority);
+static void FreeEventPriority(PQElementPriority priority)
+{
+    dateDestroy((Date)priority);
+}
 
-// /** Type of function for deallocating a key element of the priority queue */
-// static void FreePQElementPriority(PQElementPriority priority);
+static bool EqualEventElement(PQElement element1, PQElement element2)
+{
+    if (!element1 || !element2) {
+        return false;
+    }
 
+    return (((EventElement)(element1))->event_id == ((EventElement)(element2))->event_id);
+}
 
-// /**
-// * Type of function used by the priority queue to identify equal elements.
-// * This function should return:
-// * 		true if they're equal;
-// *		false otherwise;
-// */
-// static bool EqualPQElements(PQElement element1, PQElement element2);
+static int CompareEventPriorities(PQElementPriority priority1, PQElementPriority priority2)
+{
+    if (!priority1 || !priority2)
+    {
+        return 0;
+    }
+    return dateCompare((Date)priority2,(Date)priority1);
+}
 
+// Functions for members priority queue:
 
-// /**
-// * Type of function used by the priority queue to compare priorities.
-// * This function should return:
-// * 		A positive integer if the first element is greater;
-// * 		0 if they're equal;
-// *		A negative integer if the second element is greater.
-// */
-// static int ComparePQElementPriorities(PQElementPriority priority1, PQElementPriority priority2);
+static PQElement createMemberElement(char* event_name, int event_id, PriorityQueue members)
+{
+    EventElement event_element = (EventElement)malloc(sizeof(struct EventElement_t));
+    if (!event_element) {
+        return NULL;
+    }
+
+    event_element->event_id = event_id;
+    event_element->members = pqCopy(members);
+    event_element->event_name = malloc(strlen(event_name) + 1);
+    if (!event_element->event_name) {
+        return NULL;
+    }
+
+    strcpy(event_element->event_name, event_name);
+
+    return (PQElement)event_element;
+}
+
+static PQElement copyMemberElement(PQElement element)
+{
+    if (!element) {
+        return NULL;
+    }
+
+    PQElement element_copy = createEventElement(((EventElement)(element))->event_name,
+                                             ((EventElement)(element))->event_id, ((EventElement)(element))->members);
+    if (!element_copy) {
+        return NULL;
+    }
+
+    return (PQElement)element_copy;
+}
+
+static void freeMemberElement(PQElement element)
+{
+    free(((EventElement)(element))->event_name);
+    pqDestroy(((EventElement)(element))->members);
+    free((EventElement)(element));
+}
+
+static PQElementPriority CopyMemberPriority(PQElementPriority priority)
+{
+    if (!priority) {
+        return NULL;
+    }
+
+    PQElementPriority priority_copy = dateCopy((Date)(priority));
+    if (!priority_copy) {
+        return NULL;
+    }
+    return (PQElementPriority)priority_copy;
+}
+
+static void FreeMemberPriority(PQElementPriority priority)
+{
+    dateDestroy((Date)priority);
+}
+
+static bool EqualMemberElement(PQElement element1, PQElement element2)
+{
+    if (!element1 || !element2) {
+        return false;
+    }
+
+    return (((EventElement)(element1))->event_id == ((EventElement)(element2))->event_id);
+}
+
+static int CompareMemberPriorities(PQElementPriority priority1, PQElementPriority priority2)
+{
+    if (!priority1 || !priority2)
+    {
+        return 0;
+    }
+    return dateCompare((Date)priority2,(Date)priority1);
+}
 
