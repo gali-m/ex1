@@ -8,5 +8,10 @@
   "directory": "/home/noaro/mtm/ex1/ex1-2/build",
   "command": "/usr/local/bin/gcc   -std=c99 --pedantic-errors -Wall -Werror -g   -o CMakeFiles/ex1_queue.dir/test_online.c.o   -c /home/noaro/mtm/ex1/ex1-2/test_online.c",
   "file": "/home/noaro/mtm/ex1/ex1-2/test_online.c"
+},
+{
+  "directory": "/home/noaro/mtm/ex1/ex1-2/build",
+  "command": "/usr/local/bin/gcc   -std=c99 --pedantic-errors -Wall -Werror -g   -o CMakeFiles/ex1_queue.dir/pq_helper.c.o   -c /home/noaro/mtm/ex1/ex1-2/pq_helper.c",
+  "file": "/home/noaro/mtm/ex1/ex1-2/pq_helper.c"
 }
 ]

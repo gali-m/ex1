@@ -6,6 +6,22 @@
 
 #IncludeRegexTransform: 
 
+/home/noaro/mtm/ex1/ex1-2/pq_helper.c
+stdlib.h
+-
+assert.h
+-
+priority_queue.h
+/home/noaro/mtm/ex1/ex1-2/priority_queue.h
+pq_helper.h
+/home/noaro/mtm/ex1/ex1-2/pq_helper.h
+
+/home/noaro/mtm/ex1/ex1-2/pq_helper.h
+stdbool.h
+-
+priority_queue.h
+/home/noaro/mtm/ex1/ex1-2/priority_queue.h
+
 /home/noaro/mtm/ex1/ex1-2/priority_queue.c
 stdlib.h
 -
@@ -13,6 +29,8 @@ assert.h
 -
 priority_queue.h
 /home/noaro/mtm/ex1/ex1-2/priority_queue.h
+pq_helper.h
+/home/noaro/mtm/ex1/ex1-2/pq_helper.h
 
 /home/noaro/mtm/ex1/ex1-2/priority_queue.h
 stdbool.h

@@ -140,6 +140,33 @@ ex1_queue/fast:
 	$(MAKE) -f CMakeFiles/ex1_queue.dir/build.make CMakeFiles/ex1_queue.dir/build
 .PHONY : ex1_queue/fast
 
+pq_helper.o: pq_helper.c.o
+
+.PHONY : pq_helper.o
+
+# target to build an object file
+pq_helper.c.o:
+	$(MAKE) -f CMakeFiles/ex1_queue.dir/build.make CMakeFiles/ex1_queue.dir/pq_helper.c.o
+.PHONY : pq_helper.c.o
+
+pq_helper.i: pq_helper.c.i
+
+.PHONY : pq_helper.i
+
+# target to preprocess a source file
+pq_helper.c.i:
+	$(MAKE) -f CMakeFiles/ex1_queue.dir/build.make CMakeFiles/ex1_queue.dir/pq_helper.c.i
+.PHONY : pq_helper.c.i
+
+pq_helper.s: pq_helper.c.s
+
+.PHONY : pq_helper.s
+
+# target to generate assembly for a file
+pq_helper.c.s:
+	$(MAKE) -f CMakeFiles/ex1_queue.dir/build.make CMakeFiles/ex1_queue.dir/pq_helper.c.s
+.PHONY : pq_helper.c.s
+
 priority_queue.o: priority_queue.c.o
 
 .PHONY : priority_queue.o
@@ -203,6 +230,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... ex1_queue"
+	@echo "... pq_helper.o"
+	@echo "... pq_helper.i"
+	@echo "... pq_helper.s"
 	@echo "... priority_queue.o"
 	@echo "... priority_queue.i"
 	@echo "... priority_queue.s"
