@@ -28,7 +28,7 @@ Date dateCreate(int day, int month, int year)
     }
 
     // Create new date
-    Date date = (Date)malloc(sizeof(Date));
+    Date date = (Date)malloc(sizeof(struct Date_t));
     if (date == NULL)
     {
         return NULL;
