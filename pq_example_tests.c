@@ -89,6 +89,9 @@ bool testPQIterator() {
         ASSERT_TEST(pqInsert(pq, &i, &i) == PQ_SUCCESS, destroyPQIterator);
     }
 
+    int to_add = 5;
+    ASSERT_TEST(pqInsert(pq, &to_add, &to_add) == PQ_SUCCESS, destroyPQIterator);
+
     int i = 0;
     PQ_FOREACH(int*, iter, pq) {
         if (i != max_value) {

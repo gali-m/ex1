@@ -3,6 +3,7 @@
 #include "priority_queue.h"
 
 #define NULL_INPUT_ERROR -1
+#define EQUALS_PRIORITY 0
 
 typedef struct element_t
 {
@@ -216,7 +217,8 @@ PriorityQueueResult pqInsert(PriorityQueue queue, PQElement element, PQElementPr
     queue->is_iterator_undefined = true;
 
     // check if need to be in the first place - the highest priority
-    if(queue->element_list == NULL || queue->element_list->element_priority <= new_element->element_priority)
+    if(queue->element_list == NULL || 
+       queue->compare_priorities(queue->element_list->element_priority,new_element->element_priority) <= EQUALS_PRIORITY)
     {
         new_element->next = queue->element_list;
         queue->element_list = new_element;
@@ -227,8 +229,9 @@ PriorityQueueResult pqInsert(PriorityQueue queue, PQElement element, PQElementPr
 
     // put the element in the right place in list
     while (current_element->next != NULL)
-    {        
-        if(current_element->next->element_priority <= new_element->element_priority)
+    {   
+        if(queue->compare_priorities(current_element->next->element_priority,
+                                     new_element->element_priority) <= EQUALS_PRIORITY)
         {
             new_element->next = current_element->next;
             current_element->next = new_element;
@@ -281,9 +284,9 @@ PriorityQueueResult pqChangePriority(PriorityQueue queue, PQElement element,
 
     // check if the first element is the one that need to change
     if(queue->equal_elements(current_element->element_data, element) &&
-        queue->compare_priorities(current_element->element_priority, old_priority))
+        queue->compare_priorities(current_element->element_priority, old_priority) == EQUALS_PRIORITY)
     {
-        if(queue->compare_priorities(old_priority, new_priority))
+        if(queue->compare_priorities(old_priority, new_priority) == EQUALS_PRIORITY)
         {
             return PQ_SUCCESS;
         }
@@ -296,9 +299,9 @@ PriorityQueueResult pqChangePriority(PriorityQueue queue, PQElement element,
     while(current_element->next != NULL){
 
         if(queue->equal_elements(current_element->next->element_data, element) &&
-            queue->compare_priorities(current_element->next->element_priority, old_priority))
+            queue->compare_priorities(current_element->next->element_priority, old_priority) == EQUALS_PRIORITY)
         {
-            if(queue->compare_priorities(old_priority, new_priority))
+            if(queue->compare_priorities(old_priority, new_priority) == EQUALS_PRIORITY)
             {
                 return PQ_SUCCESS;
             }
