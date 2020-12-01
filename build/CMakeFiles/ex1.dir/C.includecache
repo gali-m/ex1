@@ -10,21 +10,37 @@
 stdbool.h
 -
 
-/home/gali/mtm/ex1/event_manager.c
+/home/gali/mtm/ex1/events_pq_helper.c
 date.h
 /home/gali/mtm/ex1/date.h
 priority_queue.h
 /home/gali/mtm/ex1/priority_queue.h
-event_manager.h
-/home/gali/mtm/ex1/event_manager.h
+events_pq_helper.h
+/home/gali/mtm/ex1/events_pq_helper.h
 stdlib.h
 -
 string.h
 -
 
-/home/gali/mtm/ex1/event_manager.h
+/home/gali/mtm/ex1/events_pq_helper.h
+priority_queue.h
+/home/gali/mtm/ex1/priority_queue.h
+
+/home/gali/mtm/ex1/members_pq_helper.c
 date.h
 /home/gali/mtm/ex1/date.h
+priority_queue.h
+/home/gali/mtm/ex1/priority_queue.h
+members_pq_helper.h
+/home/gali/mtm/ex1/members_pq_helper.h
+stdlib.h
+-
+string.h
+-
+
+/home/gali/mtm/ex1/members_pq_helper.h
+priority_queue.h
+/home/gali/mtm/ex1/priority_queue.h
 
 /home/gali/mtm/ex1/priority_queue.h
 stdbool.h

@@ -46,7 +46,7 @@ int CompareEventMemberPriorities(PQElementPriority priority1, PQElementPriority 
     {
         return 0;
     }
-    return (*(int*)priority1 < *(int*)priority2) ? 1 : -1;
+    return (*(int*)priority2 - *(int*)priority1);
 }
 
 // Functions for events priority queue:

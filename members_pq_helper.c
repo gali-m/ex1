@@ -104,8 +104,8 @@ int CompareMemberPriorities(PQElementPriority priority1, PQElementPriority prior
         {
             return 0;
         }
-        return (((MemberPriority)priority1)->member_id < ((MemberPriority)priority2)->member_id) ? 1 : -1;
+        return ((MemberPriority)priority2)->member_id - ((MemberPriority)priority1)->member_id;
         
     }
-    return (((MemberPriority)priority1)->num_of_events > ((MemberPriority)priority2)->num_of_events) ? 1 : -1;
+    return ((MemberPriority)priority1)->num_of_events - ((MemberPriority)priority2)->num_of_events;
 }
