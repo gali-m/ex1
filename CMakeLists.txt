@@ -7,4 +7,9 @@ set(MTM_FLAGS_RELEASE "${MTM_FLAGS_DEBUG} -DNDEBUG")
 
 set(CMAKE_C_FLAGS ${MTM_FLAGS_DEBUG})
 
+<<<<<<< HEAD
 add_executable(ex1 date.c date_tests.c) 
+=======
+# add_executable(ex1_queue priority_queue.c pq_example_tests.c) 
+add_executable(ex1_queue priority_queue.c test_online.c pq_helper.c) 
+>>>>>>> priority_queue

@@ -60,10 +60,10 @@ RM = /home/mtm/cmake-3.17.0-Linux-x86_64/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/gali/mtm/ex1
+CMAKE_SOURCE_DIR = /home/noaro/mtm/ex1/ex1-2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/gali/mtm/ex1/build
+CMAKE_BINARY_DIR = /home/noaro/mtm/ex1/ex1-2/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/ex1_queue.dir/depend.make
@@ -76,43 +76,58 @@ include CMakeFiles/ex1_queue.dir/flags.make
 
 CMakeFiles/ex1_queue.dir/priority_queue.c.o: CMakeFiles/ex1_queue.dir/flags.make
 CMakeFiles/ex1_queue.dir/priority_queue.c.o: ../priority_queue.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gali/mtm/ex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/ex1_queue.dir/priority_queue.c.o"
-	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ex1_queue.dir/priority_queue.c.o   -c /home/gali/mtm/ex1/priority_queue.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/noaro/mtm/ex1/ex1-2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/ex1_queue.dir/priority_queue.c.o"
+	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ex1_queue.dir/priority_queue.c.o   -c /home/noaro/mtm/ex1/ex1-2/priority_queue.c
 
 CMakeFiles/ex1_queue.dir/priority_queue.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ex1_queue.dir/priority_queue.c.i"
-	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gali/mtm/ex1/priority_queue.c > CMakeFiles/ex1_queue.dir/priority_queue.c.i
+	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/noaro/mtm/ex1/ex1-2/priority_queue.c > CMakeFiles/ex1_queue.dir/priority_queue.c.i
 
 CMakeFiles/ex1_queue.dir/priority_queue.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ex1_queue.dir/priority_queue.c.s"
-	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gali/mtm/ex1/priority_queue.c -o CMakeFiles/ex1_queue.dir/priority_queue.c.s
+	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/noaro/mtm/ex1/ex1-2/priority_queue.c -o CMakeFiles/ex1_queue.dir/priority_queue.c.s
 
-CMakeFiles/ex1_queue.dir/pq_example_tests.c.o: CMakeFiles/ex1_queue.dir/flags.make
-CMakeFiles/ex1_queue.dir/pq_example_tests.c.o: ../pq_example_tests.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gali/mtm/ex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/ex1_queue.dir/pq_example_tests.c.o"
-	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ex1_queue.dir/pq_example_tests.c.o   -c /home/gali/mtm/ex1/pq_example_tests.c
+CMakeFiles/ex1_queue.dir/test_online.c.o: CMakeFiles/ex1_queue.dir/flags.make
+CMakeFiles/ex1_queue.dir/test_online.c.o: ../test_online.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/noaro/mtm/ex1/ex1-2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/ex1_queue.dir/test_online.c.o"
+	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ex1_queue.dir/test_online.c.o   -c /home/noaro/mtm/ex1/ex1-2/test_online.c
 
-CMakeFiles/ex1_queue.dir/pq_example_tests.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ex1_queue.dir/pq_example_tests.c.i"
-	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/gali/mtm/ex1/pq_example_tests.c > CMakeFiles/ex1_queue.dir/pq_example_tests.c.i
+CMakeFiles/ex1_queue.dir/test_online.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ex1_queue.dir/test_online.c.i"
+	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/noaro/mtm/ex1/ex1-2/test_online.c > CMakeFiles/ex1_queue.dir/test_online.c.i
 
-CMakeFiles/ex1_queue.dir/pq_example_tests.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ex1_queue.dir/pq_example_tests.c.s"
-	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/gali/mtm/ex1/pq_example_tests.c -o CMakeFiles/ex1_queue.dir/pq_example_tests.c.s
+CMakeFiles/ex1_queue.dir/test_online.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ex1_queue.dir/test_online.c.s"
+	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/noaro/mtm/ex1/ex1-2/test_online.c -o CMakeFiles/ex1_queue.dir/test_online.c.s
+
+CMakeFiles/ex1_queue.dir/pq_helper.c.o: CMakeFiles/ex1_queue.dir/flags.make
+CMakeFiles/ex1_queue.dir/pq_helper.c.o: ../pq_helper.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/noaro/mtm/ex1/ex1-2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/ex1_queue.dir/pq_helper.c.o"
+	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/ex1_queue.dir/pq_helper.c.o   -c /home/noaro/mtm/ex1/ex1-2/pq_helper.c
+
+CMakeFiles/ex1_queue.dir/pq_helper.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/ex1_queue.dir/pq_helper.c.i"
+	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/noaro/mtm/ex1/ex1-2/pq_helper.c > CMakeFiles/ex1_queue.dir/pq_helper.c.i
+
+CMakeFiles/ex1_queue.dir/pq_helper.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/ex1_queue.dir/pq_helper.c.s"
+	/usr/local/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/noaro/mtm/ex1/ex1-2/pq_helper.c -o CMakeFiles/ex1_queue.dir/pq_helper.c.s
 
 # Object files for target ex1_queue
 ex1_queue_OBJECTS = \
 "CMakeFiles/ex1_queue.dir/priority_queue.c.o" \
-"CMakeFiles/ex1_queue.dir/pq_example_tests.c.o"
+"CMakeFiles/ex1_queue.dir/test_online.c.o" \
+"CMakeFiles/ex1_queue.dir/pq_helper.c.o"
 
 # External object files for target ex1_queue
 ex1_queue_EXTERNAL_OBJECTS =
 
 ex1_queue: CMakeFiles/ex1_queue.dir/priority_queue.c.o
-ex1_queue: CMakeFiles/ex1_queue.dir/pq_example_tests.c.o
+ex1_queue: CMakeFiles/ex1_queue.dir/test_online.c.o
+ex1_queue: CMakeFiles/ex1_queue.dir/pq_helper.c.o
 ex1_queue: CMakeFiles/ex1_queue.dir/build.make
 ex1_queue: CMakeFiles/ex1_queue.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gali/mtm/ex1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable ex1_queue"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/noaro/mtm/ex1/ex1-2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable ex1_queue"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ex1_queue.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -125,6 +140,6 @@ CMakeFiles/ex1_queue.dir/clean:
 .PHONY : CMakeFiles/ex1_queue.dir/clean
 
 CMakeFiles/ex1_queue.dir/depend:
-	cd /home/gali/mtm/ex1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/gali/mtm/ex1 /home/gali/mtm/ex1 /home/gali/mtm/ex1/build /home/gali/mtm/ex1/build /home/gali/mtm/ex1/build/CMakeFiles/ex1_queue.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/noaro/mtm/ex1/ex1-2/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/noaro/mtm/ex1/ex1-2 /home/noaro/mtm/ex1/ex1-2 /home/noaro/mtm/ex1/ex1-2/build /home/noaro/mtm/ex1/ex1-2/build /home/noaro/mtm/ex1/ex1-2/build/CMakeFiles/ex1_queue.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ex1_queue.dir/depend
 

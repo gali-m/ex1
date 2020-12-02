@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/ex1_queue.dir/pq_example_tests.c.o"
+  "CMakeFiles/ex1_queue.dir/pq_helper.c.o"
   "CMakeFiles/ex1_queue.dir/priority_queue.c.o"
+  "CMakeFiles/ex1_queue.dir/test_online.c.o"
   "ex1_queue"
   "ex1_queue.pdb"
 )

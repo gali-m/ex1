@@ -1,1 +1,1 @@
-/usr/local/bin/gcc -std=c99 --pedantic-errors -Wall -Werror -g  -rdynamic CMakeFiles/ex1_queue.dir/priority_queue.c.o CMakeFiles/ex1_queue.dir/pq_example_tests.c.o  -o ex1_queue 
+/usr/local/bin/gcc -std=c99 --pedantic-errors -Wall -Werror -g  -rdynamic CMakeFiles/ex1_queue.dir/priority_queue.c.o CMakeFiles/ex1_queue.dir/test_online.c.o CMakeFiles/ex1_queue.dir/pq_helper.c.o  -o ex1_queue 
