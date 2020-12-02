@@ -59,7 +59,7 @@ PQElement createEventElement(char* event_name, int event_id, Date date, Priority
     }
 
     event_element->event_id = event_id;
-    event_element->members = pqCopy(members);
+    event_element->members = pqCopy(members); // if null won't create a pq, will just be set to NULL
 
     event_element->date = dateCopy(date);
     if (!date)

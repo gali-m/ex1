@@ -54,7 +54,47 @@ void destroyEventManager(EventManager em)
     free(em);
 }
 
-EventManagerResult emAddEventByDate(EventManager em, char* event_name, Date date, int event_id);
+EventManagerResult emAddEventByDate(EventManager em, char* event_name, Date date, int event_id)
+{
+    if (!em || !event_name || !date ||event_id)
+    {
+        return EM_NULL_ARGUMENT;
+    }
+    
+    // TODO: what to do when equals 0?
+    if (dateCompare(em->current_date, date) >= 0)
+    {
+        return EM_INVALID_DATE;
+    }
+    
+    if (event_id < 0)
+    {
+        return EM_INVALID_EVENT_ID;
+    }
+
+    PQElement event = createEventElement(event_name, event_id, date, NULL);
+    if (!event)
+    { // TODO
+    // freeEventElement(event); ?
+        return EM_OUT_OF_MEMORY;
+    }
+
+    if (pqContains(em->events, event))
+    {
+        freeEventElement(event);
+        return EM_EVENT_ID_ALREADY_EXISTS;
+    }
+
+    if (0 == 0)
+    {// TODO
+        freeEventElement(event);
+        return EM_EVENT_ALREADY_EXISTS;
+    }
+
+    //result pqInsert(em->events, event, (PQElementPriority)date);
+    if ()
+    return EM_SUCCESS;
+}
 
 EventManagerResult emAddEventByDiff(EventManager em, char* event_name, int days, int event_id);
 
