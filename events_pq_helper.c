@@ -31,7 +31,7 @@ void freeEventMember(PQElement element)
     free((element));
 }
 
-bool EqualEventMember(PQElement element1, PQElement element2)
+bool equalEventMember(PQElement element1, PQElement element2)
 {
     if (!element1 || !element2) {
         return false;
@@ -40,7 +40,7 @@ bool EqualEventMember(PQElement element1, PQElement element2)
     return (*(int*)element1 == *(int*)element2);
 }
 
-int CompareEventMemberPriorities(PQElementPriority priority1, PQElementPriority priority2)
+int compareEventMemberPriorities(PQElementPriority priority1, PQElementPriority priority2)
 {
     if (!priority1 || !priority2 || *(int*)priority1 == *(int*)priority2)
     {
@@ -102,7 +102,7 @@ void freeEventElement(PQElement element)
     free((EventElement)(element));
 }
 
-PQElementPriority CopyEventPriority(PQElementPriority priority)
+PQElementPriority copyEventPriority(PQElementPriority priority)
 {
     if (!priority) {
         return NULL;
@@ -115,12 +115,12 @@ PQElementPriority CopyEventPriority(PQElementPriority priority)
     return priority_copy;
 }
 
-void FreeEventPriority(PQElementPriority priority)
+void freeEventPriority(PQElementPriority priority)
 {
     dateDestroy((Date)priority);
 }
 
-bool EqualEventElement(PQElement element1, PQElement element2)
+bool equalEventElement(PQElement element1, PQElement element2)
 {
     if (!element1 || !element2) {
         return false;
@@ -129,7 +129,7 @@ bool EqualEventElement(PQElement element1, PQElement element2)
     return (((EventElement)(element1))->event_id == ((EventElement)(element2))->event_id);
 }
 
-int CompareEventPriorities(PQElementPriority priority1, PQElementPriority priority2)
+int compareEventPriorities(PQElementPriority priority1, PQElementPriority priority2)
 {
     if (!priority1 || !priority2)
     {
