@@ -92,11 +92,35 @@ EventManagerResult emAddEventByDate(EventManager em, char* event_name, Date date
     }
 
     //result pqInsert(em->events, event, (PQElementPriority)date);
-    if ()
+    //if ()
     return EM_SUCCESS;
 }
 
-EventManagerResult emAddEventByDiff(EventManager em, char* event_name, int days, int event_id);
+EventManagerResult emAddEventByDiff(EventManager em, char* event_name, int days, int event_id)
+{
+    if (!em || !event_name || !days ||event_id)
+    {
+        return EM_NULL_ARGUMENT;
+    }
+
+    if (days < 0)
+    {
+        return EM_INVALID_DATE;
+    }
+
+    Date date = dateCopy(em->current_date);
+    if (!date)
+    {
+        return EM_OUT_OF_MEMORY;
+    }
+
+    for (int i = 0; i < days; i++)
+    {
+        dateTick(date);
+    }
+
+    return emAddEventByDate(em, event_name, date, event_id);
+}
 
 EventManagerResult emRemoveEvent(EventManager em, int event_id);
 
