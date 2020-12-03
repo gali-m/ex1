@@ -6,10 +6,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define NULL_INPUT_ERROR -1
+
 struct EventManager_t
 {
     Date current_date;
-    PriorityQueue events; // each event's date is it's priority, 
+    PriorityQueue events; // each event's date is it's priority,
     // event data = id + name + priority queue of members (priority = id), order by date, then by input time.
     PriorityQueue members; // members - id, name, priority = number of events responsible for (ordered by it)
 };
@@ -21,7 +23,7 @@ EventManager createEventManager(Date date)
     {
         return NULL;
     }
-    
+
     EventManager event_manager = (EventManager)malloc(sizeof(struct EventManager_t));
     if (!event_manager)
     {
@@ -30,14 +32,14 @@ EventManager createEventManager(Date date)
 
     event_manager->current_date = dateCopy(date);
     event_manager->events = pqCreate(copyEventElement, freeEventElement, equalEventElement, copyEventPriority,
-                                        freeEventPriority,compareEventPriorities);
+                                     freeEventPriority, compareEventPriorities);
     if (!event_manager->events)
     {
         return NULL;
     }
 
-    event_manager->members = pqCreate(copyMemberElement,freeMemberElement,EqualMemberElement, copyMemberPriority, 
-                                        freeMemberPriority, CompareMemberPriorities);
+    event_manager->members = pqCreate(copyMemberElement, freeMemberElement, EqualMemberElement, copyMemberPriority,
+                                      freeMemberPriority, CompareMemberPriorities);
     if (!event_manager->members)
     {
         return NULL;
@@ -54,19 +56,19 @@ void destroyEventManager(EventManager em)
     free(em);
 }
 
-EventManagerResult emAddEventByDate(EventManager em, char* event_name, Date date, int event_id)
+EventManagerResult emAddEventByDate(EventManager em, char *event_name, Date date, int event_id)
 {
-    if (!em || !event_name || !date ||event_id)
+    if (!em || !event_name || !date || event_id)
     {
         return EM_NULL_ARGUMENT;
     }
-    
+
     // TODO: what to do when equals 0?
     if (dateCompare(em->current_date, date) >= 0)
     {
         return EM_INVALID_DATE;
     }
-    
+
     if (event_id < 0)
     {
         return EM_INVALID_EVENT_ID;
@@ -75,7 +77,7 @@ EventManagerResult emAddEventByDate(EventManager em, char* event_name, Date date
     PQElement event = createEventElement(event_name, event_id, date, NULL);
     if (!event)
     { // TODO
-    // freeEventElement(event); ?
+        // freeEventElement(event); ?
         return EM_OUT_OF_MEMORY;
     }
 
@@ -86,7 +88,7 @@ EventManagerResult emAddEventByDate(EventManager em, char* event_name, Date date
     }
 
     if (0 == 0)
-    {// TODO
+    { // TODO
         freeEventElement(event);
         return EM_EVENT_ALREADY_EXISTS;
     }
@@ -96,9 +98,9 @@ EventManagerResult emAddEventByDate(EventManager em, char* event_name, Date date
     return EM_SUCCESS;
 }
 
-EventManagerResult emAddEventByDiff(EventManager em, char* event_name, int days, int event_id)
+EventManagerResult emAddEventByDiff(EventManager em, char *event_name, int days, int event_id)
 {
-    if (!em || !event_name || !days ||event_id)
+    if (!em || !event_name || !days || event_id)
     {
         return EM_NULL_ARGUMENT;
     }
@@ -122,10 +124,50 @@ EventManagerResult emAddEventByDiff(EventManager em, char* event_name, int days,
     return emAddEventByDate(em, event_name, date, event_id);
 }
 
-EventManagerResult emRemoveEvent(EventManager em, int event_id);
+EventManagerResult emRemoveEvent(EventManager em, int event_id)
+{
+    if (!em || !event_id)
+    {
+        return EM_NULL_ARGUMENT;
+    }
+    //element with event_id
+    //int result = pqRemoveElement(em->events,//element);
+
+    //return result;
+}
 
 EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_date);
 
-EventManagerResult emTick(EventManager em, int days);
+EventManagerResult emTick(EventManager em, int days)
+{
+    if (!em || !days)
+    {
+        return EM_NULL_ARGUMENT;
+    }
 
-int emGetEventsAmount(EventManager em);
+    if (days <= 0)
+    {
+        return EM_INVALID_DATE;
+    }
+
+    for (int i = 0; i < days; i++)
+    {
+        dateTick(em->current_date);
+
+        while (0 == 0)
+        { // remove events
+            // emRemoveEvent()
+        }
+    }
+    return EM_SUCCESS;
+}
+
+int emGetEventsAmount(EventManager em)
+{
+    if (!em)
+    {
+        return NULL_INPUT_ERROR;
+    }
+
+    return pqGetSize(em->events);
+}
