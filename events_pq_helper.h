@@ -25,6 +25,8 @@ void freeEventPriority(PQElementPriority priority);
 
 bool equalEventElement(PQElement element1, PQElement element2);
 
+bool isEventExists(PriorityQueue queue, char* event_name, Date date);
+
 int compareEventPriorities(PQElementPriority priority1, PQElementPriority priority2);
 
 #endif //EVENTS_PQ_HELPER_H_

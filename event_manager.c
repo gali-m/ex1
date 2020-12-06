@@ -74,10 +74,14 @@ EventManagerResult emAddEventByDate(EventManager em, char *event_name, Date date
         return EM_INVALID_EVENT_ID;
     }
 
+    if (isEventExists(em->events, event_name, date))
+    { 
+        return EM_EVENT_ALREADY_EXISTS;
+    }
+
     PQElement event = createEventElement(event_name, event_id, date, NULL);
     if (!event)
-    { // TODO
-        // freeEventElement(event); ?
+    { 
         return EM_OUT_OF_MEMORY;
     }
 
@@ -87,14 +91,13 @@ EventManagerResult emAddEventByDate(EventManager em, char *event_name, Date date
         return EM_EVENT_ID_ALREADY_EXISTS;
     }
 
-    if (0 == 0)
-    { // TODO
+    PriorityQueueResult result = pqInsert(em->events, event, (PQElementPriority)date);
+    if (result != PQ_SUCCESS)
+    {
         freeEventElement(event);
-        return EM_EVENT_ALREADY_EXISTS;
+        return (EventManagerResult)result;
     }
 
-    //result pqInsert(em->events, event, (PQElementPriority)date);
-    //if ()
     return EM_SUCCESS;
 }
 
@@ -124,17 +127,17 @@ EventManagerResult emAddEventByDiff(EventManager em, char *event_name, int days,
     return emAddEventByDate(em, event_name, date, event_id);
 }
 
-EventManagerResult emRemoveEvent(EventManager em, int event_id)
-{
-    if (!em || !event_id)
-    {
-        return EM_NULL_ARGUMENT;
-    }
-    //element with event_id
-    //int result = pqRemoveElement(em->events,//element);
+EventManagerResult emRemoveEvent(EventManager em, int event_id);
+// {
+//     if (!em || !event_id)
+//     {
+//         return EM_NULL_ARGUMENT;
+//     }
+//     //element with event_id
+//     //int result = pqRemoveElement(em->events,//element);
 
-    //return result;
-}
+//     //return result;
+// }
 
 EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_date);
 

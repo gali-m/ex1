@@ -129,6 +129,27 @@ bool equalEventElement(PQElement element1, PQElement element2)
     return (((EventElement)(element1))->event_id == ((EventElement)(element2))->event_id);
 }
 
+bool isEventExists(PriorityQueue queue, char* event_name, Date date)
+{
+    if (!queue || !event_name || !date)
+    {
+        return false;
+    }
+
+    PQElement event = pqGetFirst(queue);
+    
+    while (event != NULL)
+    {
+        if (strcmp(((EventElement)(event))->event_name,event_name) == 0 
+                    && dateCompare(((EventElement)(event))->date,date) == 0)
+        {
+            return true;
+        }
+        event = pqGetNext(queue);
+    }
+    return false;
+}
+
 int compareEventPriorities(PQElementPriority priority1, PQElementPriority priority2)
 {
     if (!priority1 || !priority2)
