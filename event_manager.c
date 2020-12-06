@@ -5,6 +5,7 @@
 #include "members_pq_helper.h"
 #include <stdlib.h>
 #include <string.h>
+#include <assert.h>
 
 #define NULL_INPUT_ERROR -1
 
@@ -92,13 +93,20 @@ EventManagerResult emAddEventByDate(EventManager em, char *event_name, Date date
     }
 
     PriorityQueueResult result = pqInsert(em->events, event, (PQElementPriority)date);
-    if (result != PQ_SUCCESS)
-    {
-        freeEventElement(event);
-        return (EventManagerResult)result;
-    }
 
-    return EM_SUCCESS;
+    freeEventElement(event);
+
+    switch (result)
+    {
+        case PQ_OUT_OF_MEMORY:
+            return EM_OUT_OF_MEMORY;
+            
+        case PQ_NULL_ARGUMENT:
+            return EM_NULL_ARGUMENT;
+        
+        default:
+            return EM_SUCCESS;
+    }
 }
 
 EventManagerResult emAddEventByDiff(EventManager em, char *event_name, int days, int event_id)
@@ -127,19 +135,91 @@ EventManagerResult emAddEventByDiff(EventManager em, char *event_name, int days,
     return emAddEventByDate(em, event_name, date, event_id);
 }
 
-EventManagerResult emRemoveEvent(EventManager em, int event_id);
-// {
-//     if (!em || !event_id)
-//     {
-//         return EM_NULL_ARGUMENT;
-//     }
-//     //element with event_id
-//     //int result = pqRemoveElement(em->events,//element);
+EventManagerResult emRemoveEvent(EventManager em, int event_id)
+{
+    if (!em || !event_id)
+    {
+        return EM_NULL_ARGUMENT;
+    }
 
-//     //return result;
-// }
+    if (event_id < 0)
+    {
+        return EM_INVALID_EVENT_ID;
+    }
 
-EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_date);
+    PQElement event = createEventElement(NULL, event_id, NULL, NULL);
+    if (!event)
+    {
+        return EM_OUT_OF_MEMORY;
+    }
+    
+    PriorityQueueResult result = pqRemoveElement(em->events, event);
+    
+    freeEventElement(event);
+
+    switch (result)
+    {
+        case PQ_ELEMENT_DOES_NOT_EXISTS:
+            return EM_EVENT_NOT_EXISTS;
+            
+        case PQ_NULL_ARGUMENT:
+            return EM_NULL_ARGUMENT;
+        
+        default:
+            return EM_SUCCESS;
+    }
+}
+
+EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_date)
+{
+    if (!em || !event_id || !new_date)
+    {
+        return EM_NULL_ARGUMENT;
+    }
+
+    if (dateCompare(em->current_date, new_date) >= 0)
+    {
+        return EM_INVALID_DATE;
+    }
+
+    if (event_id < 0)
+    {
+        return EM_INVALID_EVENT_ID;
+    }
+
+    EventElement event = getEvent(em->events, event_id);
+    if (!event)
+    {
+        return EM_EVENT_ID_NOT_EXISTS;
+    }
+
+    if (isEventExists(em->events, event->event_name, new_date))
+    { 
+        return EM_EVENT_ALREADY_EXISTS;
+    }
+
+    PriorityQueueResult result = pqChangePriority(em->events, event, event->date, new_date);
+    event->date = dateCopy(new_date);
+    if(!event->date)
+    {
+        return EM_OUT_OF_MEMORY;
+    }
+    
+    switch (result)
+    {
+        case PQ_NULL_ARGUMENT:
+            return EM_NULL_ARGUMENT;
+        
+        case PQ_OUT_OF_MEMORY:
+            return EM_OUT_OF_MEMORY;
+
+        case PQ_ELEMENT_DOES_NOT_EXISTS:
+            return EM_EVENT_ID_NOT_EXISTS;
+
+        default:
+            return EM_SUCCESS;
+    }
+}
 
 EventManagerResult emTick(EventManager em, int days)
 {
@@ -153,13 +233,19 @@ EventManagerResult emTick(EventManager em, int days)
         return EM_INVALID_DATE;
     }
 
+    EventManagerResult result;
     for (int i = 0; i < days; i++)
     {
         dateTick(em->current_date);
-
-        while (0 == 0)
+        
+        while (dateCompare(((EventElement)pqGetFirst(em->events))->date, em->current_date) <= 0)
         { // remove events
-            // emRemoveEvent()
+            result = emRemoveEvent(em, ((EventElement)pqGetFirst(em->events))->event_id);
+            if (result == EM_OUT_OF_MEMORY)
+            {
+                return result;
+            }
+            assert(result == EM_SUCCESS);
         }
     }
     return EM_SUCCESS;

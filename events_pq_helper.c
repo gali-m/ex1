@@ -4,14 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct EventElement_t
-{
-    char* event_name;
-    int event_id;
-    Date date;
-    PriorityQueue members;
-};
-
 // Functions for event members priority queue:
 
 PQElement copyEventMember(PQElement element)
@@ -136,16 +128,13 @@ bool isEventExists(PriorityQueue queue, char* event_name, Date date)
         return false;
     }
 
-    PQElement event = pqGetFirst(queue);
-    
-    while (event != NULL)
+    PQ_FOREACH(EventElement,event,queue)
     {
-        if (strcmp(((EventElement)(event))->event_name,event_name) == 0 
-                    && dateCompare(((EventElement)(event))->date,date) == 0)
+        if (strcmp(event->event_name, event_name) == 0 
+                    && dateCompare(event->date, date) == 0)
         {
             return true;
         }
-        event = pqGetNext(queue);
     }
     return false;
 }
@@ -157,4 +146,22 @@ int compareEventPriorities(PQElementPriority priority1, PQElementPriority priori
         return 0;
     }
     return dateCompare((Date)priority2,(Date)priority1);
+}
+
+EventElement getEvent(PriorityQueue events, int event_id)
+{
+    if (!events || !event_id)
+    {
+        return NULL;
+    }
+
+    PQ_FOREACH(EventElement,event,events)
+    {
+        if(event->event_id == event_id)
+        {
+            return event;
+        }
+    }
+
+    return NULL;
 }
