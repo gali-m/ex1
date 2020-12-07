@@ -3,7 +3,15 @@
 
 #include "priority_queue.h"
 
-typedef struct EventElement_t *EventElement;
+// typedef struct EventElement_t *EventElement;
+
+typedef struct EventElement_t
+{
+    char* event_name;
+    int event_id;
+    Date date;
+    PriorityQueue members;
+} *EventElement;
 
 PQElement copyEventMember(PQElement element);
 
@@ -25,6 +33,10 @@ void FreeEventPriority(PQElementPriority priority);
 
 bool EqualEventElement(PQElement element1, PQElement element2);
 
-int CompareEventPriorities(PQElementPriority priority1, PQElementPriority priority2);
+bool isEventExists(PriorityQueue queue, char* event_name, Date date);
+
+int compareEventPriorities(PQElementPriority priority1, PQElementPriority priority2);
+
+EventElement getEvent(PriorityQueue events, int event_id);
 
 #endif //EVENTS_PQ_HELPER_H_

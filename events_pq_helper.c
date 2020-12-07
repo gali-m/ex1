@@ -4,13 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct EventElement_t
-{
-    char* event_name;
-    int event_id;
-    Date date;
-    PriorityQueue members;
-};
+
 
 // Functions for event members priority queue:
 

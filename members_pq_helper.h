@@ -3,9 +3,22 @@
 
 #include "priority_queue.h"
 
-typedef struct MemberElement_t *MemberElement;
+// typedef struct MemberElement_t *MemberElement;
 
-typedef struct MemberPriority_t *MemberPriority;
+// typedef struct MemberPriority_t *MemberPriority;
+
+typedef struct MemberElement_t
+{
+    char* member_name;
+    int member_id;
+    int num_of_events;
+} *MemberElement;
+
+typedef struct MemberPriority_t
+{
+    int num_of_events;
+    int member_id;
+} *MemberPriority;
 
 PQElement createMemberElement(char* member_name, int member_id, int num_of_events);
 

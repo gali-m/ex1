@@ -4,19 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct MemberElement_t
-{
-    char* member_name;
-    int member_id;
-    int num_of_events;
-};
-
-struct MemberPriority_t
-{
-    int num_of_events;
-    int member_id;
-};
-
 // Functions for members priority queue:
 
 PQElement createMemberElement(char* member_name, int member_id, int num_of_events)
