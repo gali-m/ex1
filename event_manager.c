@@ -17,6 +17,58 @@ struct EventManager_t
     PriorityQueue members; // members - id, name, priority = number of events responsible for (ordered by it)
 };
 
+EventManagerResult emAddMember(EventManager em, char* member_name, int member_id)
+{
+    if(em == NULL || member_name == NULL)
+    {
+        return EM_NULL_ARGUMENT;
+    }
+
+    if(member_id < 0)
+    {
+        return EM_INVALID_MEMBER_ID;
+    }
+
+    PQ_FOREACH(MemberElement,member,em->members)
+    {
+        if (member->member_id == member_id)
+        {
+            return EM_MEMBER_ID_ALREADY_EXISTS;
+        }
+    }
+
+    PQElement new_member = createMemberElement(member_name, member_id, 0);
+    if(new_member == NULL)
+    {
+        return EM_OUT_OF_MEMORY;
+    }
+
+    PQElement new_member_priority = createMemberPriority(member_id, 0);
+    if(new_member_priority == NULL)
+    {
+        return EM_OUT_OF_MEMORY;
+    }
+
+    PriorityQueueResult pq_insert_result = pqInsert(em->members, new_member, new_member_priority);
+
+    freeMemberElement(new_member);
+    free(new_member_priority);
+
+    if(pq_insert_result == PQ_NULL_ARGUMENT)
+    {
+        return EM_NULL_ARGUMENT;
+    }
+    if(pq_insert_result == PQ_OUT_OF_MEMORY)
+    {
+        return EM_OUT_OF_MEMORY;
+    }
+    if(pq_insert_result == PQ_SUCCESS)
+    {
+        return EM_SUCCESS;
+    }
+    return EM_SUCCESS;
+}
+
 char* emGetNextEvent(EventManager em)
 {
     if(em == NULL)
