@@ -17,6 +17,23 @@ struct EventManager_t
     PriorityQueue members; // members - id, name, priority = number of events responsible for (ordered by it)
 };
 
+static EventManagerResult EmResultToPqResult(PriorityQueueResult result)
+{
+    if(result == PQ_NULL_ARGUMENT)
+    {
+        return EM_NULL_ARGUMENT;
+    }
+    if(result == PQ_OUT_OF_MEMORY)
+    {
+        return EM_OUT_OF_MEMORY;
+    }
+    if(result == PQ_SUCCESS)
+    {
+        return EM_SUCCESS;
+    }
+    return EM_SUCCESS;
+}
+
 EventManagerResult emAddMember(EventManager em, char* member_name, int member_id)
 {
     if(em == NULL || member_name == NULL)
@@ -37,36 +54,55 @@ EventManagerResult emAddMember(EventManager em, char* member_name, int member_id
         }
     }
 
-    PQElement new_member = createMemberElement(member_name, member_id, 0);
-    if(new_member == NULL)
-    {
-        return EM_OUT_OF_MEMORY;
-    }
+    PriorityQueueResult add_result = AddMemberToQueue(em->members, member_name, member_id);
 
-    PQElement new_member_priority = createMemberPriority(member_id, 0);
-    if(new_member_priority == NULL)
-    {
-        return EM_OUT_OF_MEMORY;
-    }
+    return EmResultToPqResult(add_result);
+}
 
-    PriorityQueueResult pq_insert_result = pqInsert(em->members, new_member, new_member_priority);
-
-    freeMemberElement(new_member);
-    free(new_member_priority);
-
-    if(pq_insert_result == PQ_NULL_ARGUMENT)
+EventManagerResult emAddMemberToEvent(EventManager em, int member_id, int event_id)
+{
+    if(em == NULL)
     {
         return EM_NULL_ARGUMENT;
     }
-    if(pq_insert_result == PQ_OUT_OF_MEMORY)
+
+    if(member_id < 0)
     {
-        return EM_OUT_OF_MEMORY;
+        return EM_INVALID_MEMBER_ID;
     }
-    if(pq_insert_result == PQ_SUCCESS)
+
+    if(event_id < 0)
     {
-        return EM_SUCCESS;
+        return EM_INVALID_EVENT_ID;
     }
-    return EM_SUCCESS;
+
+    EventElement event_to_add_member = getEvent(em->events, event_id);
+    if (event_to_add_member == NULL)
+    {
+        return EM_EVENT_NOT_EXISTS;
+    }
+
+    MemberElement em_member = getMember(em->members, member_id);
+    if(em_member == NULL)
+    {
+        return EM_MEMBER_ID_NOT_EXISTS;
+    }
+
+    MemberElement event_member =  getMember(event_to_add_member->members, member_id);
+    if(event_member == NULL)
+    {
+        return EM_EVENT_AND_MEMBER_ALREADY_LINKED;
+    }
+
+    PriorityQueueResult add_result = AddMemberToQueue(event_to_add_member->members, em_member->member_name, member_id);
+
+    if(add_result == PQ_SUCCESS)
+    {
+        em_member->num_of_events++;
+        event_member->num_of_events++;
+    }
+
+    return EmResultToPqResult(add_result);
 }
 
 char* emGetNextEvent(EventManager em)

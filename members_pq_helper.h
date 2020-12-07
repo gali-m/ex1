@@ -36,4 +36,8 @@ bool EqualMemberElement(PQElement element1, PQElement element2);
 
 int CompareMemberPriorities(PQElementPriority priority1, PQElementPriority priority2);
 
+MemberElement getMember(PriorityQueue members, int member_id);
+
+PriorityQueueResult AddMemberToQueue(PriorityQueue members,char* member_name, int member_id);
+
 #endif //MEMBERS_PQ_HELPER_H_

@@ -114,3 +114,43 @@ int CompareMemberPriorities(PQElementPriority priority1, PQElementPriority prior
     }
     return ((MemberPriority)priority1)->num_of_events - ((MemberPriority)priority2)->num_of_events;
 }
+
+MemberElement getMember(PriorityQueue members, int member_id)
+{
+    if (!members || !member_id)
+    {
+        return NULL;
+    }
+
+    PQ_FOREACH(MemberElement,member,members)
+    {
+        if(member->member_id == member_id)
+        {
+            return member;
+        }
+    }
+
+    return NULL;
+}
+
+PriorityQueueResult AddMemberToQueue(PriorityQueue members,char* member_name, int member_id)
+{
+    PQElement new_member = createMemberElement(member_name, member_id, 0);
+    if(new_member == NULL)
+    {
+        return PQ_OUT_OF_MEMORY;
+    }
+
+    PQElement new_member_priority = createMemberPriority(member_id, 0);
+    if(new_member_priority == NULL)
+    {
+        return PQ_OUT_OF_MEMORY;
+    }
+
+    PriorityQueueResult pq_insert_result = pqInsert(members, new_member, new_member_priority);
+
+    freeMemberElement(new_member);
+    free(new_member_priority);
+
+    return pq_insert_result;
+}
