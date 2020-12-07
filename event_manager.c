@@ -176,29 +176,22 @@ void emPrintAllEvents(EventManager em, const char* file_name)
         return;
     }
 
-    EventElement current_event = (EventElement)pqGetFirst(em->events);
-
-    while(current_event != NULL)
+    PQ_FOREACH(EventElement,event,em->events)
     {
         int day, month, year;
-        
-        if(dateGet(current_event->date, &day, &month, &year))
+        if(dateGet(event->date, &day, &month, &year))
         {
             return;
         }
 
-        fprintf(events_file, "%s,%d.%d.%d", current_event->event_name, day, month, year);
+        fprintf(events_file, "%s,%d.%d.%d", event->event_name, day, month, year);
 
-        MemberElement current_member = (MemberElement)pqGetFirst(current_event->members);
-
-        while(current_member != NULL)
+        PQ_FOREACH(MemberElement,member,event->members)
         {
-            fprintf(events_file, ",%s", current_member->member_name);
+            fprintf(events_file, ",%s", member->member_name);
         }
 
         fprintf(events_file, "\n");
-
-        current_event = pqGetNext(em->events);
     }
 
     if(events_file != NULL)
