@@ -134,3 +134,21 @@ int CompareEventPriorities(PQElementPriority priority1, PQElementPriority priori
     }
     return dateCompare((Date)priority2,(Date)priority1);
 }
+
+EventElement getEvent(PriorityQueue events, int event_id)
+{
+    if (!events || !event_id)
+    {
+        return NULL;
+    }
+
+    PQ_FOREACH(EventElement,event,events)
+    {
+        if(event->event_id == event_id)
+        {
+            return event;
+        }
+    }
+
+    return NULL;
+}

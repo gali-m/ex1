@@ -180,8 +180,14 @@ void emPrintAllEvents(EventManager em, const char* file_name)
 
     while(current_event != NULL)
     {
-        // TODO: check who to print date
-        fprintf(events_file, "%s,%s", current_event->event_name, current_event->date);
+        int day, month, year;
+        
+        if(dateGet(current_event->date, &day, &month, &year))
+        {
+            return;
+        }
+
+        fprintf(events_file, "%s,%d.%d.%d", current_event->event_name, day, month, year);
 
         MemberElement current_member = (MemberElement)pqGetFirst(current_event->members);
 
