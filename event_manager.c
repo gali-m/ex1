@@ -34,6 +34,26 @@ static EventManagerResult EmResultToPqResult(PriorityQueueResult result)
     return EM_SUCCESS;
 }
 
+static EventManagerResult AddOrRemoveCheckes(EventManager em, int member_id, int event_id)
+{
+    if(em == NULL)
+    {
+        return EM_NULL_ARGUMENT;
+    }
+
+    if(member_id < 0)
+    {
+        return EM_INVALID_MEMBER_ID;
+    }
+
+    if(event_id < 0)
+    {
+        return EM_INVALID_EVENT_ID;
+    }
+    
+    return EM_SUCCESS;
+}
+
 EventManagerResult emAddMember(EventManager em, char* member_name, int member_id)
 {
     if(em == NULL || member_name == NULL)
@@ -61,19 +81,10 @@ EventManagerResult emAddMember(EventManager em, char* member_name, int member_id
 
 EventManagerResult emAddMemberToEvent(EventManager em, int member_id, int event_id)
 {
-    if(em == NULL)
+    EventManagerResult checks_result = AddOrRemoveCheckes(em, member_id, event_id);
+    if( checks_result != EM_SUCCESS)
     {
-        return EM_NULL_ARGUMENT;
-    }
-
-    if(member_id < 0)
-    {
-        return EM_INVALID_MEMBER_ID;
-    }
-
-    if(event_id < 0)
-    {
-        return EM_INVALID_EVENT_ID;
+        return checks_result;
     }
 
     EventElement event_to_add_member = getEvent(em->events, event_id);
@@ -89,7 +100,7 @@ EventManagerResult emAddMemberToEvent(EventManager em, int member_id, int event_
     }
 
     MemberElement event_member =  getMember(event_to_add_member->members, member_id);
-    if(event_member == NULL)
+    if(event_member != NULL)
     {
         return EM_EVENT_AND_MEMBER_ALREADY_LINKED;
     }
@@ -98,11 +109,48 @@ EventManagerResult emAddMemberToEvent(EventManager em, int member_id, int event_
 
     if(add_result == PQ_SUCCESS)
     {
+        event_member =  getMember(event_to_add_member->members, member_id);
         em_member->num_of_events++;
         event_member->num_of_events++;
     }
 
     return EmResultToPqResult(add_result);
+}
+
+EventManagerResult emRemoveMemberFromEvent(EventManager em, int member_id, int event_id)
+{
+    EventManagerResult checks_result = AddOrRemoveCheckes(em, member_id, event_id);
+    if( checks_result != EM_SUCCESS)
+    {
+        return checks_result;
+    }
+
+    EventElement event_to_remove_member = getEvent(em->events, event_id);
+    if (event_to_remove_member == NULL)
+    {
+        return EM_EVENT_NOT_EXISTS;
+    }
+
+    MemberElement em_member = getMember(em->members, member_id);
+    if(em_member == NULL)
+    {
+        return EM_MEMBER_ID_NOT_EXISTS;
+    }
+
+    MemberElement event_member =  getMember(event_to_remove_member->members, member_id);
+    if(event_member == NULL)
+    {
+        return EM_EVENT_AND_MEMBER_ALREADY_LINKED;
+    }
+
+    PriorityQueueResult remove_result = pqRemoveElement(event_to_remove_member->members, event_member);
+    if(remove_result == PQ_SUCCESS)
+    {
+        em_member->num_of_events--;
+        event_member->num_of_events--;
+    }
+
+    return EmResultToPqResult(remove_result);
 }
 
 char* emGetNextEvent(EventManager em)
