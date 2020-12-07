@@ -8,11 +8,13 @@
 
 PQElement createMemberElement(char* member_name, int member_id, int num_of_events)
 {
+    // create new member
     MemberElement member_element = (MemberElement)malloc(sizeof(struct MemberElement_t));
     if (!member_element) {
         return NULL;
     }
 
+    // assign a copy of the values to the member
     member_element->member_id = member_id;
     member_element->num_of_events = num_of_events;
     member_element->member_name = malloc(strlen(member_name) + 1);
@@ -31,6 +33,7 @@ PQElement copyMemberElement(PQElement element)
         return NULL;
     }
 
+    // create a copy of the member
     PQElement element_copy = createMemberElement(((MemberElement)(element))->member_name,
                                     ((MemberElement)(element))->member_id,((MemberElement)(element))->num_of_events);
     if (!element_copy) {
@@ -52,6 +55,7 @@ PQElementPriority copyMemberPriority(PQElementPriority priority)
         return NULL;
     }
 
+    // create a copy of the priority
     MemberPriority priority_copy = (MemberPriority)malloc(sizeof(struct MemberPriority_t));
     if (!priority_copy) {
         return NULL;
@@ -75,6 +79,7 @@ bool EqualMemberElement(PQElement element1, PQElement element2)
         return false;
     }
 
+    // TRUE only if the member ids are identical
     return (((MemberElement)(element1))->member_id == ((MemberElement)(element2))->member_id);
 }
 
@@ -86,13 +91,12 @@ int CompareMemberPriorities(PQElementPriority priority1, PQElementPriority prior
     }
 
     if (((MemberPriority)priority1)->num_of_events == ((MemberPriority)priority2)->num_of_events)
-    {
-        if (((MemberPriority)priority1)->member_id == ((MemberPriority)priority2)->member_id)
-        {
-            return 0;
-        }
+    { // same num_of_events
+        // positive if id1 is smaller than id2 , 0 if the ids are identical, negative if id2 is smaller than id1
         return ((MemberPriority)priority2)->member_id - ((MemberPriority)priority1)->member_id;
         
     }
+
+    // positive if priority1's num_of_events is bigger than priority2's , 0 if they are identical, negative if smaller
     return ((MemberPriority)priority1)->num_of_events - ((MemberPriority)priority2)->num_of_events;
 }

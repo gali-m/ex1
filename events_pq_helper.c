@@ -12,7 +12,14 @@ PQElement copyEventMember(PQElement element)
         return NULL;
     }
 
+    // create a new member
     int *element_copy = (int*)malloc(sizeof(int));
+    if (!element_copy)
+    {
+        return NULL;
+    }
+    
+    // copy the member's id
     *element_copy = *(int*)element;
 
     return (PQElement)element_copy;
@@ -29,15 +36,18 @@ bool equalEventMember(PQElement element1, PQElement element2)
         return false;
     }
 
+    // TRUE only if the member ids are identical
     return (*(int*)element1 == *(int*)element2);
 }
 
 int compareEventMemberPriorities(PQElementPriority priority1, PQElementPriority priority2)
 {
-    if (!priority1 || !priority2 || *(int*)priority1 == *(int*)priority2)
+    if (!priority1 || !priority2)
     {
         return 0;
     }
+
+    // positive if id2 is bigger, 0 if equal, negative if id1 bigger
     return (*(int*)priority2 - *(int*)priority1);
 }
 
@@ -45,11 +55,13 @@ int compareEventMemberPriorities(PQElementPriority priority1, PQElementPriority 
 
 PQElement createEventElement(char* event_name, int event_id, Date date, PriorityQueue members)
 {
+    // create new event
     EventElement event_element = (EventElement)malloc(sizeof(struct EventElement_t));
     if (!event_element) {
         return NULL;
     }
 
+    // assign a copy of the values to the event
     event_element->event_id = event_id;
     event_element->members = pqCopy(members); // if null won't create a pq, will just be set to NULL
 
@@ -75,6 +87,7 @@ PQElement copyEventElement(PQElement element)
         return NULL;
     }
 
+    // create a copy of the event
     PQElement element_copy = createEventElement(((EventElement)(element))->event_name,
     ((EventElement)(element))->event_id, ((EventElement)(element))->date, ((EventElement)(element))->members);
     
@@ -100,6 +113,7 @@ PQElementPriority copyEventPriority(PQElementPriority priority)
         return NULL;
     }
 
+    // create a copy of date
     PQElementPriority priority_copy = dateCopy((Date)(priority));
     if (!priority_copy) {
         return NULL;
@@ -118,8 +132,22 @@ bool equalEventElement(PQElement element1, PQElement element2)
         return false;
     }
 
+    // TRUE only if the event ids are identical
     return (((EventElement)(element1))->event_id == ((EventElement)(element2))->event_id);
 }
+
+int compareEventPriorities(PQElementPriority priority1, PQElementPriority priority2)
+{
+    if (!priority1 || !priority2)
+    {
+        return 0;
+    }
+
+    // positive if date1 is before date2, 0 if the dates are identical, negative if date2 is before date1
+    return dateCompare((Date)priority2,(Date)priority1);
+}
+
+// Helper functions for events queue in event_manager:
 
 bool isEventExists(PriorityQueue queue, char* event_name, Date date)
 {
@@ -132,20 +160,13 @@ bool isEventExists(PriorityQueue queue, char* event_name, Date date)
     {
         if (strcmp(event->event_name, event_name) == 0 
                     && dateCompare(event->date, date) == 0)
-        {
+        { // TRUE only if an event with the same name and event is found in the event's queue
             return true;
         }
     }
-    return false;
-}
 
-int compareEventPriorities(PQElementPriority priority1, PQElementPriority priority2)
-{
-    if (!priority1 || !priority2)
-    {
-        return 0;
-    }
-    return dateCompare((Date)priority2,(Date)priority1);
+    // no such event was found
+    return false;
 }
 
 EventElement getEvent(PriorityQueue events, int event_id)
@@ -158,10 +179,11 @@ EventElement getEvent(PriorityQueue events, int event_id)
     PQ_FOREACH(EventElement,event,events)
     {
         if(event->event_id == event_id)
-        {
+        { // the event was found
             return event;
         }
     }
 
+    // no such event in events
     return NULL;
 }
