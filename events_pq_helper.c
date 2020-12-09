@@ -101,10 +101,13 @@ PQElement copyEventElement(PQElement element)
 
 void freeEventElement(PQElement element)
 {
-    free(((EventElement)(element))->event_name);
-    dateDestroy(((EventElement)(element))->date);
-    pqDestroy(((EventElement)(element))->members);
-    free((EventElement)(element));
+    if(element != NULL)
+    {
+        free(((EventElement)(element))->event_name);
+        dateDestroy(((EventElement)(element))->date);
+        pqDestroy(((EventElement)(element))->members);
+        free((EventElement)(element));
+    }   
 }
 
 PQElementPriority copyEventPriority(PQElementPriority priority)
