@@ -14,7 +14,6 @@ CMakeFiles/ex1.dir/event_manager.c.o: ../priority_queue.h
 CMakeFiles/ex1.dir/event_manager_example_tests.c.o: ../date.h
 CMakeFiles/ex1.dir/event_manager_example_tests.c.o: ../event_manager.h
 CMakeFiles/ex1.dir/event_manager_example_tests.c.o: ../event_manager_example_tests.c
-CMakeFiles/ex1.dir/event_manager_example_tests.c.o: ../test_utilities.h
 
 CMakeFiles/ex1.dir/events_pq_helper.c.o: ../date.h
 CMakeFiles/ex1.dir/events_pq_helper.c.o: ../events_pq_helper.c

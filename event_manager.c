@@ -103,7 +103,7 @@ void destroyEventManager(EventManager em)
 
 EventManagerResult emAddEventByDate(EventManager em, char *event_name, Date date, int event_id)
 {
-    if (!em || !event_name || !date || !event_id)
+    if (!em || !event_name || !date)
     {
         return EM_NULL_ARGUMENT;
     }
@@ -147,7 +147,7 @@ EventManagerResult emAddEventByDate(EventManager em, char *event_name, Date date
 
 EventManagerResult emAddEventByDiff(EventManager em, char *event_name, int days, int event_id)
 {
-    if (!em || !event_name || !days || !event_id)
+    if (!em || !event_name)
     {
         return EM_NULL_ARGUMENT;
     }
@@ -176,7 +176,7 @@ EventManagerResult emAddEventByDiff(EventManager em, char *event_name, int days,
 
 EventManagerResult emRemoveEvent(EventManager em, int event_id)
 {
-    if (!em || !event_id)
+    if (!em)
     {
         return EM_NULL_ARGUMENT;
     }
@@ -202,7 +202,7 @@ EventManagerResult emRemoveEvent(EventManager em, int event_id)
 
 EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_date)
 {
-    if (!em || !event_id || !new_date)
+    if (!em || !new_date)
     {
         return EM_NULL_ARGUMENT;
     }
@@ -230,8 +230,8 @@ EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_dat
     }
 
     //update the event's date (both in data and in priority)
-    event->date = dateCopy(new_date);
     PriorityQueueResult result = pqChangePriority(em->events, event, event->date, new_date);
+    event->date = dateCopy(new_date);
     if(!event->date)
     {
         return EM_OUT_OF_MEMORY;
@@ -242,7 +242,7 @@ EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_dat
 
 EventManagerResult emTick(EventManager em, int days)
 {
-    if (!em || !days)
+    if (!em)
     {
         return EM_NULL_ARGUMENT;
     }

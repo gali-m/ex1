@@ -58,7 +58,7 @@ int compareEventMemberPriorities(PQElementPriority priority1, PQElementPriority 
 
 PQElement createEventElement(char* event_name, int event_id, Date date, PriorityQueue members)
 {
-    if(!event_name || !event_id || !date)
+    if(!event_name || !date)
     {
         return NULL;
     }
@@ -206,7 +206,7 @@ bool isEventExists(PriorityQueue queue, char* event_name, Date date)
 
 EventElement getEvent(PriorityQueue events, int event_id)
 {
-    if (!events || !event_id)
+    if (!events)
     {
         return NULL;
     }
