@@ -8,6 +8,11 @@
 
 PQElement createMemberElement(char* member_name, int member_id, int num_of_events)
 {
+    if (!member_name)
+    {
+        return NULL;
+    }
+
     // create new member
     MemberElement member_element = (MemberElement)malloc(sizeof(struct MemberElement_t));
     if (!member_element) {
@@ -47,7 +52,10 @@ void freeMemberElement(PQElement element)
 {
     if(element != NULL)
     {
-        free(((MemberElement)(element))->member_name);
+        if(((MemberElement)(element))->member_name != NULL)
+        {
+            free(((MemberElement)(element))->member_name);
+        }
         free((MemberElement)(element));
     }
 }
@@ -120,7 +128,7 @@ int CompareMemberPriorities(PQElementPriority priority1, PQElementPriority prior
 
 MemberElement getMember(PriorityQueue members, int member_id)
 {
-    if (!members || !member_id)
+    if (!members)
     {
         return NULL;
     }
@@ -138,6 +146,11 @@ MemberElement getMember(PriorityQueue members, int member_id)
 
 PriorityQueueResult AddMemberToQueue(PriorityQueue members,char* member_name, int member_id)
 {
+    if (!member_name)
+    {
+        return PQ_NULL_ARGUMENT;
+    }
+
     PQElement new_member = createMemberElement(member_name, member_id, 0);
     if(new_member == NULL)
     {

@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/noaro/mtm/ex1/ex1-2/date.h
+stdbool.h
+-
+
+/home/noaro/mtm/ex1/ex1-2/event_manager.h
+date.h
+/home/noaro/mtm/ex1/ex1-2/date.h
+
+/home/noaro/mtm/ex1/ex1-2/event_manager_example_tests.c
+stdio.h
+-
+stdbool.h
+-
+string.h
+-
+stdlib.h
+-
+assert.h
+-
+event_manager.h
+/home/noaro/mtm/ex1/ex1-2/event_manager.h
+date.h
+/home/noaro/mtm/ex1/ex1-2/date.h
+

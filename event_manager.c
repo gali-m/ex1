@@ -20,6 +20,32 @@ struct EventManager_t
 };
 // TODO: Switch params to const?
 
+static EventManagerResult EmResultToPqResult(PriorityQueueResult result)
+{
+    if(result == PQ_NULL_ARGUMENT)
+    {
+        return EM_NULL_ARGUMENT;
+    }
+    if(result == PQ_OUT_OF_MEMORY)
+    {
+        return EM_OUT_OF_MEMORY;
+    }
+    if(result == PQ_SUCCESS)
+    {
+        return EM_SUCCESS;
+    }
+    if(result == PQ_ELEMENT_DOES_NOT_EXISTS)
+    {
+        return EM_EVENT_NOT_EXISTS;
+    }
+    if(result == PQ_NULL_ARGUMENT)
+    {
+        return EM_NULL_ARGUMENT;
+    }
+
+    return EM_ERROR;
+}
+
 EventManager createEventManager(Date date)
 {
     if (!date)
@@ -57,21 +83,32 @@ EventManager createEventManager(Date date)
 
 void destroyEventManager(EventManager em)
 {
-    dateDestroy(em->current_date);
-    pqDestroy(em->events);
-    pqDestroy(em->members);
-    free(em);
+    if(em != NULL)
+    {
+        if(em->current_date != NULL)
+        {
+            dateDestroy(em->current_date);
+        }
+        if(em->events != NULL)
+        {
+            pqDestroy(em->events);
+        }
+        if(em->members != NULL)
+        {
+            pqDestroy(em->members);
+        }       
+        free(em);
+    }
 }
 
 EventManagerResult emAddEventByDate(EventManager em, char *event_name, Date date, int event_id)
 {
-    if (!em || !event_name || !date || !event_id)
+    if (!em || !event_name || !date)
     {
         return EM_NULL_ARGUMENT;
     }
 
-    // TODO: what to do when equals 0?
-    if (dateCompare(em->current_date, date) >= 0)
+    if (dateCompare(em->current_date, date) > 0)
     { // date is before current date
         return EM_INVALID_DATE;
     }
@@ -104,22 +141,13 @@ EventManagerResult emAddEventByDate(EventManager em, char *event_name, Date date
 
     freeEventElement(event);
 
-    switch (result)
-    { // return the correct result
-        case PQ_OUT_OF_MEMORY:
-            return EM_OUT_OF_MEMORY;
-            
-        case PQ_NULL_ARGUMENT:
-            return EM_NULL_ARGUMENT;
-        
-        default:
-            return EM_SUCCESS;
-    }
+
+    return EmResultToPqResult(result);
 }
 
 EventManagerResult emAddEventByDiff(EventManager em, char *event_name, int days, int event_id)
 {
-    if (!em || !event_name || !days || !event_id)
+    if (!em || !event_name)
     {
         return EM_NULL_ARGUMENT;
     }
@@ -148,7 +176,7 @@ EventManagerResult emAddEventByDiff(EventManager em, char *event_name, int days,
 
 EventManagerResult emRemoveEvent(EventManager em, int event_id)
 {
-    if (!em || !event_id)
+    if (!em)
     {
         return EM_NULL_ARGUMENT;
     }
@@ -158,39 +186,28 @@ EventManagerResult emRemoveEvent(EventManager em, int event_id)
         return EM_INVALID_EVENT_ID;
     }
 
-    // create an event with event_id for pqRemoveElement function
-    PQElement event = createEventElement(NULL, event_id, NULL, NULL);
+    PQElement event = getEvent(em->events, event_id);
     if (!event)
     {
-        return EM_OUT_OF_MEMORY;
+        return EM_EVENT_NOT_EXISTS;
     }
     
     // remove the event by it's id
     PriorityQueueResult result = pqRemoveElement(em->events, event);
     
-    freeEventElement(event);
+    // freeEventElement(event);
 
-    switch (result)
-    { // return the correct result
-        case PQ_ELEMENT_DOES_NOT_EXISTS:
-            return EM_EVENT_NOT_EXISTS;
-            
-        case PQ_NULL_ARGUMENT:
-            return EM_NULL_ARGUMENT;
-        
-        default:
-            return EM_SUCCESS;
-    }
+    return EmResultToPqResult(result);
 }
 
 EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_date)
 {
-    if (!em || !event_id || !new_date)
+    if (!em || !new_date)
     {
         return EM_NULL_ARGUMENT;
     }
 
-    if (dateCompare(em->current_date, new_date) >= 0)
+    if (dateCompare(em->current_date, new_date) > 0)
     { // date is before current date
         return EM_INVALID_DATE;
     }
@@ -213,32 +230,19 @@ EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_dat
     }
 
     //update the event's date (both in data and in priority)
-    event->date = dateCopy(new_date);
     PriorityQueueResult result = pqChangePriority(em->events, event, event->date, new_date);
+    event->date = dateCopy(new_date);
     if(!event->date)
     {
         return EM_OUT_OF_MEMORY;
     }
     
-    switch (result)
-    { // return the correct result
-        case PQ_NULL_ARGUMENT:
-            return EM_NULL_ARGUMENT;
-        
-        case PQ_OUT_OF_MEMORY:
-            return EM_OUT_OF_MEMORY;
-
-        case PQ_ELEMENT_DOES_NOT_EXISTS:
-            return EM_EVENT_ID_NOT_EXISTS;
-
-        default:
-            return EM_SUCCESS;
-    }
+    return EmResultToPqResult(result);
 }
 
 EventManagerResult emTick(EventManager em, int days)
 {
-    if (!em || !days)
+    if (!em)
     {
         return EM_NULL_ARGUMENT;
     }
@@ -256,7 +260,12 @@ EventManagerResult emTick(EventManager em, int days)
     
     EventManagerResult result;
 
-    while (dateCompare(((EventElement)pqGetFirst(em->events))->date, em->current_date) <= 0)
+    if(em->events == NULL)
+    {
+        return EM_SUCCESS;
+    }
+
+    while ((EventElement)pqGetFirst(em->events) != NULL && dateCompare(((EventElement)pqGetFirst(em->events))->date, em->current_date) < 0)
     { // remove events which occur before current date
         result = emRemoveEvent(em, ((EventElement)pqGetFirst(em->events))->event_id);
         if (result == EM_OUT_OF_MEMORY)
@@ -279,23 +288,6 @@ int emGetEventsAmount(EventManager em)
     
     // get the number of events in events queue
     return pqGetSize(em->events);
-}
-
-static EventManagerResult EmResultToPqResult(PriorityQueueResult result)
-{
-    if(result == PQ_NULL_ARGUMENT)
-    {
-        return EM_NULL_ARGUMENT;
-    }
-    if(result == PQ_OUT_OF_MEMORY)
-    {
-        return EM_OUT_OF_MEMORY;
-    }
-    if(result == PQ_SUCCESS)
-    {
-        return EM_SUCCESS;
-    }
-    return EM_SUCCESS;
 }
 
 static EventManagerResult AddOrRemoveCheckes(EventManager em, int member_id, int event_id)
@@ -419,12 +411,12 @@ EventManagerResult emRemoveMemberFromEvent(EventManager em, int member_id, int e
 
 char* emGetNextEvent(EventManager em)
 {
-    if(em == NULL)
+    if(em == NULL || em->events == NULL || pqGetSize(em->events) == 0)
     {
         return NULL;
     }
 
-    return pqGetFirst(em->events);
+    return ((EventElement)pqGetFirst(em->events))->event_name;
 }
 
 void emPrintAllEvents(EventManager em, const char* file_name)
