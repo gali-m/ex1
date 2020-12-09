@@ -27,7 +27,10 @@ PQElement copyEventMember(PQElement element)
 
 void freeEventMember(PQElement element)
 {
-    free((element));
+    if(element != NULL)
+    {
+        free((element));
+    }
 }
 
 bool equalEventMember(PQElement element1, PQElement element2)
@@ -55,6 +58,11 @@ int compareEventMemberPriorities(PQElementPriority priority1, PQElementPriority 
 
 PQElement createEventElement(char* event_name, int event_id, Date date, PriorityQueue members)
 {
+    if(!event_name || !event_id || !date)
+    {
+        return NULL;
+    }
+
     // create new event
     EventElement event_element = (EventElement)malloc(sizeof(struct EventElement_t));
     if (!event_element) {
@@ -63,15 +71,27 @@ PQElement createEventElement(char* event_name, int event_id, Date date, Priority
 
     // assign a copy of the values to the event
     event_element->event_id = event_id;
-    event_element->members = pqCopy(members); // if null won't create a pq, will just be set to NULL
 
+    if (members)
+    { // the event has members
+        event_element->members = pqCopy(members); 
+        if (!event_element->members)
+        {
+            return NULL;
+        }
+    }
+    else
+    {
+        event_element->members = NULL;
+    }
+    
     event_element->date = dateCopy(date);
     if (!date)
     {
         return NULL;
     }
 
-    event_element->event_name = malloc(strlen(event_name) + 1);
+    event_element->event_name = (char *)malloc(strlen(event_name) + 1);
     if (!event_element->event_name) {
         return NULL;
     }
@@ -101,11 +121,20 @@ PQElement copyEventElement(PQElement element)
 
 void freeEventElement(PQElement element)
 {
-    if(element != NULL)
+    if (element != NULL)
     {
-        free(((EventElement)(element))->event_name);
-        dateDestroy(((EventElement)(element))->date);
-        pqDestroy(((EventElement)(element))->members);
+        if (((EventElement)(element))->event_name != NULL)
+        {
+            free(((EventElement)(element))->event_name);
+        }
+        if (((EventElement)(element))->date != NULL)
+        {
+            dateDestroy(((EventElement)(element))->date);
+        }
+        if (((EventElement)(element))->members != NULL)
+        {
+            pqDestroy(((EventElement)(element))->members);
+        }
         free((EventElement)(element));
     }   
 }
@@ -126,7 +155,10 @@ PQElementPriority copyEventPriority(PQElementPriority priority)
 
 void freeEventPriority(PQElementPriority priority)
 {
-    dateDestroy((Date)priority);
+    if (priority != NULL)
+    {
+        dateDestroy((Date)priority);
+    }
 }
 
 bool equalEventElement(PQElement element1, PQElement element2)
