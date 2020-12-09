@@ -45,8 +45,25 @@ PQElement copyMemberElement(PQElement element)
 
 void freeMemberElement(PQElement element)
 {
-    free(((MemberElement)(element))->member_name);
-    free((MemberElement)(element));
+    if(element != NULL)
+    {
+        free(((MemberElement)(element))->member_name);
+        free((MemberElement)(element));
+    }
+}
+
+
+PQElement createMemberPriority(int member_id, int num_of_events)
+{
+    MemberPriority member_element = (MemberPriority)malloc(sizeof(struct MemberPriority_t));
+    if (!member_element) {
+        return NULL;
+    }
+
+    member_element->member_id = member_id;
+    member_element->num_of_events = num_of_events;
+
+    return (PQElement)member_element;
 }
 
 PQElementPriority copyMemberPriority(PQElementPriority priority)
@@ -55,22 +72,22 @@ PQElementPriority copyMemberPriority(PQElementPriority priority)
         return NULL;
     }
 
-    // create a copy of the priority
-    MemberPriority priority_copy = (MemberPriority)malloc(sizeof(struct MemberPriority_t));
-    if (!priority_copy) {
+    PQElement priority_copy = createMemberPriority(((MemberPriority)priority)->member_id, 
+                                                   ((MemberPriority)priority)->num_of_events);
+    if(priority_copy == NULL)
+    {
         return NULL;
     }
-
-    priority_copy->num_of_events = ((MemberPriority)priority)->num_of_events;
-    priority_copy->member_id = ((MemberPriority)priority)->member_id;
-
 
     return (PQElementPriority)priority_copy;
 }
 
 void freeMemberPriority(PQElementPriority priority)
 {
-    free(priority);
+    if(priority != NULL)
+    {
+        free(priority);
+    }
 }
 
 bool EqualMemberElement(PQElement element1, PQElement element2)
@@ -99,4 +116,44 @@ int CompareMemberPriorities(PQElementPriority priority1, PQElementPriority prior
 
     // positive if priority1's num_of_events is bigger than priority2's , 0 if they are identical, negative if smaller
     return ((MemberPriority)priority1)->num_of_events - ((MemberPriority)priority2)->num_of_events;
+}
+
+MemberElement getMember(PriorityQueue members, int member_id)
+{
+    if (!members || !member_id)
+    {
+        return NULL;
+    }
+
+    PQ_FOREACH(MemberElement,member,members)
+    {
+        if(member->member_id == member_id)
+        {
+            return member;
+        }
+    }
+
+    return NULL;
+}
+
+PriorityQueueResult AddMemberToQueue(PriorityQueue members,char* member_name, int member_id)
+{
+    PQElement new_member = createMemberElement(member_name, member_id, 0);
+    if(new_member == NULL)
+    {
+        return PQ_OUT_OF_MEMORY;
+    }
+
+    PQElement new_member_priority = createMemberPriority(member_id, 0);
+    if(new_member_priority == NULL)
+    {
+        return PQ_OUT_OF_MEMORY;
+    }
+
+    PriorityQueueResult pq_insert_result = pqInsert(members, new_member, new_member_priority);
+
+    freeMemberElement(new_member);
+    free(new_member_priority);
+
+    return pq_insert_result;
 }
