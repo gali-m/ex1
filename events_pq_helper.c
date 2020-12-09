@@ -98,6 +98,13 @@ PQElement createEventElement(char* event_name, int event_id, Date date, Priority
 
     strcpy(event_element->event_name, event_name);
 
+    event_element->members = pqCreate(copyEventMember, freeEventMember, equalEventMember, copyEventMember, 
+                                      freeEventMember, compareEventMemberPriorities);
+    if(!event_element->members)
+    {
+        return NULL;
+    }
+    
     return (PQElement)event_element;
 }
 

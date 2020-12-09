@@ -7,7 +7,8 @@ set(MTM_FLAGS_RELEASE "${MTM_FLAGS_DEBUG} -DNDEBUG")
 
 set(CMAKE_C_FLAGS ${MTM_FLAGS_DEBUG})
 
-link_directories(.)
-add_executable(ex1 date.c priority_queue.c pq_helper.c events_pq_helper.c members_pq_helper.c event_manager.c event_manager_example_tests.c) 
-target_link_libraries(ex1 libpriority_queue.a)
+# link_directories(.)
+# add_executable(ex1 date.c priority_queue.c pq_helper.c events_pq_helper.c members_pq_helper.c event_manager.c event_manager_example_tests.c) 
+add_executable(ex1 date.o priority_queue.o pq_helper.o events_pq_helper.o members_pq_helper.o event_manager.o event_manager_example_tests.o)
+# target_link_libraries(ex1 libpriority_queue.a)
 

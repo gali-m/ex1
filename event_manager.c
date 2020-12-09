@@ -165,7 +165,7 @@ EventManagerResult emAddEventByDiff(EventManager em, char *event_name, int days,
     }
 
     // reach the event's date
-    for (int i = 0; i < days; i++)
+    for(int i = 0; i < days; i++)
     {
         dateTick(date);
     }
@@ -229,8 +229,19 @@ EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_dat
         return EM_EVENT_ALREADY_EXISTS;
     }
 
+    PQElement new_event = copyEventElement(event);
+    if (!new_event)
+    {
+        return EM_OUT_OF_MEMORY;
+    }
+
     //update the event's date (both in data and in priority)
-    PriorityQueueResult result = pqChangePriority(em->events, event, event->date, new_date);
+    PriorityQueueResult result = pqChangePriority(em->events, new_event, event->date, new_date);
+    if (result != PQ_SUCCESS && new_event)
+    {
+        freeEventElement(new_event);
+    }
+
     event->date = dateCopy(new_date);
     if(!event->date)
     {
@@ -252,7 +263,7 @@ EventManagerResult emTick(EventManager em, int days)
         return EM_INVALID_DATE;
     }
 
-    for (int i = 0; i < days; i++)
+    for(int i = 0; i < days; i++)
     {
         // promote current date
         dateTick(em->current_date);
@@ -322,12 +333,10 @@ EventManagerResult emAddMember(EventManager em, char* member_name, int member_id
         return EM_INVALID_MEMBER_ID;
     }
 
-    PQ_FOREACH(MemberElement,member,em->members)
+    MemberElement em_member = getMember(em->members, member_id);
+    if(em_member != NULL)
     {
-        if (member->member_id == member_id)
-        {
-            return EM_MEMBER_ID_ALREADY_EXISTS;
-        }
+        return EM_MEMBER_ID_ALREADY_EXISTS;
     }
 
     PriorityQueueResult add_result = AddMemberToQueue(em->members, member_name, member_id);

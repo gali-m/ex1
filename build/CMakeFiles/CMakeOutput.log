@@ -194,3 +194,199 @@ Parsed C implicit link information from above output:
   implicit fwks: []
 
 
+The system is: Linux - 3.10.0-1160.2.1.el7.x86_64 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /usr/local/bin/gcc 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/home/noaro/mtm/ex1/ex1-2/build/CMakeFiles/3.17.0/CompilerIdC/a.out"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: /home/noaro/mtm/ex1/ex1-2/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_296ba/fast && /usr/bin/gmake -f CMakeFiles/cmTC_296ba.dir/build.make CMakeFiles/cmTC_296ba.dir/build
+gmake[1]: Entering directory `/home/noaro/mtm/ex1/ex1-2/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_296ba.dir/testCCompiler.c.o
+/usr/local/bin/gcc    -o CMakeFiles/cmTC_296ba.dir/testCCompiler.c.o   -c /home/noaro/mtm/ex1/ex1-2/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_296ba
+/home/mtm/cmake-3.17.0-Linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_296ba.dir/link.txt --verbose=1
+/usr/local/bin/gcc      -rdynamic CMakeFiles/cmTC_296ba.dir/testCCompiler.c.o  -o cmTC_296ba 
+gmake[1]: Leaving directory `/home/noaro/mtm/ex1/ex1-2/build/CMakeFiles/CMakeTmp'
+
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /home/noaro/mtm/ex1/ex1-2/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_71efa/fast && /usr/bin/gmake -f CMakeFiles/cmTC_71efa.dir/build.make CMakeFiles/cmTC_71efa.dir/build
+gmake[1]: Entering directory `/home/noaro/mtm/ex1/ex1-2/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_71efa.dir/CMakeCCompilerABI.c.o
+/usr/local/bin/gcc   -v -o CMakeFiles/cmTC_71efa.dir/CMakeCCompilerABI.c.o   -c /home/mtm/cmake-3.17.0-Linux-x86_64/share/cmake-3.17/Modules/CMakeCCompilerABI.c
+Using built-in specs.
+COLLECT_GCC=/usr/local/bin/gcc
+Target: x86_64-unknown-linux-gnu
+Configured with: ../gcc_5_5_0_release/configure
+Thread model: posix
+gcc version 5.5.0 (GCC) 
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_71efa.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64'
+ /usr/local/libexec/gcc/x86_64-unknown-linux-gnu/5.5.0/cc1 -quiet -v /home/mtm/cmake-3.17.0-Linux-x86_64/share/cmake-3.17/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_71efa.dir/CMakeCCompilerABI.c.o -version -o /tmp/cc8JjuwJ.s
+GNU C11 (GCC) version 5.5.0 (x86_64-unknown-linux-gnu)
+	compiled by GNU C version 5.5.0, GMP version 4.3.2, MPFR version 2.4.2, MPC version 0.8.1
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/../../../../x86_64-unknown-linux-gnu/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/include
+ /usr/local/include
+ /usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/include-fixed
+ /usr/include
+End of search list.
+GNU C11 (GCC) version 5.5.0 (x86_64-unknown-linux-gnu)
+	compiled by GNU C version 5.5.0, GMP version 4.3.2, MPFR version 2.4.2, MPC version 0.8.1
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: 72bc951123588311031133e6028b8c7a
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_71efa.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64'
+ as -v --64 -o CMakeFiles/cmTC_71efa.dir/CMakeCCompilerABI.c.o /tmp/cc8JjuwJ.s
+GNU assembler version 2.27 (x86_64-redhat-linux) using BFD version version 2.27-41.base.el7_7.1
+COMPILER_PATH=/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/5.5.0/:/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/5.5.0/:/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/:/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/:/usr/local/lib/gcc/x86_64-unknown-linux-gnu/
+LIBRARY_PATH=/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/:/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_71efa.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64'
+Linking C executable cmTC_71efa
+/home/mtm/cmake-3.17.0-Linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_71efa.dir/link.txt --verbose=1
+/usr/local/bin/gcc     -v -rdynamic CMakeFiles/cmTC_71efa.dir/CMakeCCompilerABI.c.o  -o cmTC_71efa 
+Using built-in specs.
+COLLECT_GCC=/usr/local/bin/gcc
+COLLECT_LTO_WRAPPER=/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/5.5.0/lto-wrapper
+Target: x86_64-unknown-linux-gnu
+Configured with: ../gcc_5_5_0_release/configure
+Thread model: posix
+gcc version 5.5.0 (GCC) 
+COMPILER_PATH=/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/5.5.0/:/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/5.5.0/:/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/:/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/:/usr/local/lib/gcc/x86_64-unknown-linux-gnu/
+LIBRARY_PATH=/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/:/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_71efa' '-mtune=generic' '-march=x86-64'
+ /usr/local/libexec/gcc/x86_64-unknown-linux-gnu/5.5.0/collect2 -plugin /usr/local/libexec/gcc/x86_64-unknown-linux-gnu/5.5.0/liblto_plugin.so -plugin-opt=/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/5.5.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccpghP8H.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_71efa /lib/../lib64/crt1.o /lib/../lib64/crti.o /usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/crtbegin.o -L/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0 -L/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/../../.. CMakeFiles/cmTC_71efa.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/crtend.o /lib/../lib64/crtn.o
+gmake[1]: Leaving directory `/home/noaro/mtm/ex1/ex1-2/build/CMakeFiles/CMakeTmp'
+
+
+
+Parsed C implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/include]
+    add: [/usr/local/include]
+    add: [/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/include-fixed]
+    add: [/usr/include]
+  end of search list found
+  collapse include dir [/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/include] ==> [/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/include]
+  collapse include dir [/usr/local/include] ==> [/usr/local/include]
+  collapse include dir [/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/include-fixed] ==> [/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/include-fixed]
+  collapse include dir [/usr/include] ==> [/usr/include]
+  implicit include dirs: [/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/include;/usr/local/include;/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/include-fixed;/usr/include]
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/noaro/mtm/ex1/ex1-2/build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/gmake cmTC_71efa/fast && /usr/bin/gmake -f CMakeFiles/cmTC_71efa.dir/build.make CMakeFiles/cmTC_71efa.dir/build]
+  ignore line: [gmake[1]: Entering directory `/home/noaro/mtm/ex1/ex1-2/build/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_71efa.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/local/bin/gcc   -v -o CMakeFiles/cmTC_71efa.dir/CMakeCCompilerABI.c.o   -c /home/mtm/cmake-3.17.0-Linux-x86_64/share/cmake-3.17/Modules/CMakeCCompilerABI.c]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/local/bin/gcc]
+  ignore line: [Target: x86_64-unknown-linux-gnu]
+  ignore line: [Configured with: ../gcc_5_5_0_release/configure]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 5.5.0 (GCC) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_71efa.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64']
+  ignore line: [ /usr/local/libexec/gcc/x86_64-unknown-linux-gnu/5.5.0/cc1 -quiet -v /home/mtm/cmake-3.17.0-Linux-x86_64/share/cmake-3.17/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_71efa.dir/CMakeCCompilerABI.c.o -version -o /tmp/cc8JjuwJ.s]
+  ignore line: [GNU C11 (GCC) version 5.5.0 (x86_64-unknown-linux-gnu)]
+  ignore line: [	compiled by GNU C version 5.5.0  GMP version 4.3.2  MPFR version 2.4.2  MPC version 0.8.1]
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring nonexistent directory "/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/../../../../x86_64-unknown-linux-gnu/include"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/include]
+  ignore line: [ /usr/local/include]
+  ignore line: [ /usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/include-fixed]
+  ignore line: [ /usr/include]
+  ignore line: [End of search list.]
+  ignore line: [GNU C11 (GCC) version 5.5.0 (x86_64-unknown-linux-gnu)]
+  ignore line: [	compiled by GNU C version 5.5.0  GMP version 4.3.2  MPFR version 2.4.2  MPC version 0.8.1]
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [Compiler executable checksum: 72bc951123588311031133e6028b8c7a]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_71efa.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64']
+  ignore line: [ as -v --64 -o CMakeFiles/cmTC_71efa.dir/CMakeCCompilerABI.c.o /tmp/cc8JjuwJ.s]
+  ignore line: [GNU assembler version 2.27 (x86_64-redhat-linux) using BFD version version 2.27-41.base.el7_7.1]
+  ignore line: [COMPILER_PATH=/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/5.5.0/:/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/5.5.0/:/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/:/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/:/usr/local/lib/gcc/x86_64-unknown-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/:/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_71efa.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64']
+  ignore line: [Linking C executable cmTC_71efa]
+  ignore line: [/home/mtm/cmake-3.17.0-Linux-x86_64/bin/cmake -E cmake_link_script CMakeFiles/cmTC_71efa.dir/link.txt --verbose=1]
+  ignore line: [/usr/local/bin/gcc     -v -rdynamic CMakeFiles/cmTC_71efa.dir/CMakeCCompilerABI.c.o  -o cmTC_71efa ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/local/bin/gcc]
+  ignore line: [COLLECT_LTO_WRAPPER=/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/5.5.0/lto-wrapper]
+  ignore line: [Target: x86_64-unknown-linux-gnu]
+  ignore line: [Configured with: ../gcc_5_5_0_release/configure]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 5.5.0 (GCC) ]
+  ignore line: [COMPILER_PATH=/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/5.5.0/:/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/5.5.0/:/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/:/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/:/usr/local/lib/gcc/x86_64-unknown-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/:/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_71efa' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/local/libexec/gcc/x86_64-unknown-linux-gnu/5.5.0/collect2 -plugin /usr/local/libexec/gcc/x86_64-unknown-linux-gnu/5.5.0/liblto_plugin.so -plugin-opt=/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/5.5.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccpghP8H.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_71efa /lib/../lib64/crt1.o /lib/../lib64/crti.o /usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/crtbegin.o -L/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0 -L/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/../../.. CMakeFiles/cmTC_71efa.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/crtend.o /lib/../lib64/crtn.o]
+    arg [/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/5.5.0/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/5.5.0/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/5.5.0/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccpghP8H.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_71efa] ==> ignore
+    arg [/lib/../lib64/crt1.o] ==> ignore
+    arg [/lib/../lib64/crti.o] ==> ignore
+    arg [/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/crtbegin.o] ==> ignore
+    arg [-L/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0] ==> dir [/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0]
+    arg [-L/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/../../../../lib64] ==> dir [/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/../../..] ==> dir [/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/../../..]
+    arg [CMakeFiles/cmTC_71efa.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [-lc] ==> lib [c]
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/crtend.o] ==> ignore
+    arg [/lib/../lib64/crtn.o] ==> ignore
+  collapse library dir [/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0] ==> [/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0]
+  collapse library dir [/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/../../../../lib64] ==> [/usr/local/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0/../../..] ==> [/usr/local/lib]
+  implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+  implicit dirs: [/usr/local/lib/gcc/x86_64-unknown-linux-gnu/5.5.0;/usr/local/lib64;/lib64;/usr/lib64;/usr/local/lib]
+  implicit fwks: []
+
+
