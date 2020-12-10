@@ -32,7 +32,7 @@ event_manager.o: event_manager.c date.h priority_queue.h event_manager.h events_
 date.o: date.c date.h
 	$(CC) -c $(COMP_FLAG) $*.c
 
-events_pq_helper.o: events_pq_helper.c date.h priority_queue.h events_pq_helper.h
+events_pq_helper.o: events_pq_helper.c date.h priority_queue.h events_pq_helper.h members_pq_helper.h
 	$(CC) -c $(COMP_FLAG) $*.c
 
 members_pq_helper.o: members_pq_helper.c date.h priority_queue.h members_pq_helper.h

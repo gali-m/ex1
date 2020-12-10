@@ -1,6 +1,7 @@
 #include "date.h"
 #include "priority_queue.h"
 #include "events_pq_helper.h"
+#include "members_pq_helper.h"
 #include <stdlib.h>
 #include <string.h>
 
@@ -98,8 +99,9 @@ PQElement createEventElement(char* event_name, int event_id, Date date, Priority
 
     strcpy(event_element->event_name, event_name);
 
-    event_element->members = pqCreate(copyEventMember, freeEventMember, equalEventMember, copyEventMember, 
-                                      freeEventMember, compareEventMemberPriorities);
+    event_element->members = pqCreate(copyMemberElement, freeMemberElement, EqualMemberElement, copyMemberPriority,
+                                      freeMemberPriority, CompareMemberPriorities);
+
     if(!event_element->members)
     {
         return NULL;

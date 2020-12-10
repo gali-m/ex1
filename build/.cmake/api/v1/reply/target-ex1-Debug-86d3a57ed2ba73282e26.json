@@ -10,9 +10,7 @@
 	{
 		"commands" : 
 		[
-			"add_executable",
-			"link_directories",
-			"target_link_libraries"
+			"add_executable"
 		],
 		"files" : 
 		[
@@ -27,18 +25,6 @@
 				"command" : 0,
 				"file" : 0,
 				"line" : 11,
-				"parent" : 0
-			},
-			{
-				"command" : 1,
-				"file" : 0,
-				"line" : 10,
-				"parent" : 0
-			},
-			{
-				"command" : 2,
-				"file" : 0,
-				"line" : 12,
 				"parent" : 0
 			}
 		]
@@ -77,28 +63,6 @@
 			{
 				"fragment" : "-rdynamic",
 				"role" : "flags"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "-L/home/noaro/mtm/ex1/ex1-2/.",
-				"role" : "libraryPath"
-			},
-			{
-				"fragment" : "-Wl,-rpath,/home/noaro/mtm/ex1/ex1-2/.",
-				"role" : "libraries"
-			},
-			{
-				"fragment" : "-Wl,-Bstatic",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 3,
-				"fragment" : "-lpriority_queue",
-				"role" : "libraries"
-			},
-			{
-				"fragment" : "-Wl,-Bdynamic",
-				"role" : "libraries"
 			}
 		],
 		"language" : "C"
