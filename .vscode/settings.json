@@ -36,4 +36,5 @@
 
     // Enable parameter hints
     "editor.parameterHints.enabled": true,
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
 }

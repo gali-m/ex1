@@ -48,8 +48,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/noaro/mtm/ex1/ex1-2/build",
-		"source" : "/home/noaro/mtm/ex1/ex1-2"
+		"build" : "/home/gali/mtm/ex1/build",
+		"source" : "/home/gali/mtm/ex1"
 	},
 	"version" : 
 	{

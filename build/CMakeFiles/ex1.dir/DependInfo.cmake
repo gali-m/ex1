@@ -4,13 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/noaro/mtm/ex1/ex1-2/date.c" "/home/noaro/mtm/ex1/ex1-2/build/CMakeFiles/ex1.dir/date.c.o"
-  "/home/noaro/mtm/ex1/ex1-2/event_manager.c" "/home/noaro/mtm/ex1/ex1-2/build/CMakeFiles/ex1.dir/event_manager.c.o"
-  "/home/noaro/mtm/ex1/ex1-2/event_manager_example_tests.c" "/home/noaro/mtm/ex1/ex1-2/build/CMakeFiles/ex1.dir/event_manager_example_tests.c.o"
-  "/home/noaro/mtm/ex1/ex1-2/events_pq_helper.c" "/home/noaro/mtm/ex1/ex1-2/build/CMakeFiles/ex1.dir/events_pq_helper.c.o"
-  "/home/noaro/mtm/ex1/ex1-2/members_pq_helper.c" "/home/noaro/mtm/ex1/ex1-2/build/CMakeFiles/ex1.dir/members_pq_helper.c.o"
-  "/home/noaro/mtm/ex1/ex1-2/pq_helper.c" "/home/noaro/mtm/ex1/ex1-2/build/CMakeFiles/ex1.dir/pq_helper.c.o"
-  "/home/noaro/mtm/ex1/ex1-2/priority_queue.c" "/home/noaro/mtm/ex1/ex1-2/build/CMakeFiles/ex1.dir/priority_queue.c.o"
+  "/home/gali/mtm/ex1/date.c" "/home/gali/mtm/ex1/build/CMakeFiles/ex1.dir/date.c.o"
+  "/home/gali/mtm/ex1/event_manager.c" "/home/gali/mtm/ex1/build/CMakeFiles/ex1.dir/event_manager.c.o"
+  "/home/gali/mtm/ex1/event_manager_example_tests.c" "/home/gali/mtm/ex1/build/CMakeFiles/ex1.dir/event_manager_example_tests.c.o"
+  "/home/gali/mtm/ex1/events_pq_helper.c" "/home/gali/mtm/ex1/build/CMakeFiles/ex1.dir/events_pq_helper.c.o"
+  "/home/gali/mtm/ex1/members_pq_helper.c" "/home/gali/mtm/ex1/build/CMakeFiles/ex1.dir/members_pq_helper.c.o"
+  "/home/gali/mtm/ex1/pq_helper.c" "/home/gali/mtm/ex1/build/CMakeFiles/ex1.dir/pq_helper.c.o"
+  "/home/gali/mtm/ex1/priority_queue.c" "/home/gali/mtm/ex1/build/CMakeFiles/ex1.dir/priority_queue.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

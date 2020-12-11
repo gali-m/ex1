@@ -76,16 +76,18 @@ PQElement createEventElement(char* event_name, int event_id, Date date, Priority
     if (members)
     { // the event has members
         event_element->members = pqCopy(members); 
-        if (!event_element->members)
-        {
-            return NULL;
-        }
     }
     else
     {
-        event_element->members = NULL;
+        event_element->members = pqCreate(copyMemberElement, freeMemberElement, EqualMemberElement, copyMemberPriority,
+                                      freeMemberPriority, CompareMemberPriorities);
     }
     
+    if(!event_element->members)
+    {
+        return NULL;
+    }
+
     event_element->date = dateCopy(date);
     if (!date)
     {
@@ -98,14 +100,6 @@ PQElement createEventElement(char* event_name, int event_id, Date date, Priority
     }
 
     strcpy(event_element->event_name, event_name);
-
-    event_element->members = pqCreate(copyMemberElement, freeMemberElement, EqualMemberElement, copyMemberPriority,
-                                      freeMemberPriority, CompareMemberPriorities);
-
-    if(!event_element->members)
-    {
-        return NULL;
-    }
     
     return (PQElement)event_element;
 }
