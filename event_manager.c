@@ -393,7 +393,7 @@ EventManagerResult emRemoveMemberFromEvent(EventManager em, int member_id, int e
     EventElement event_to_remove_member = getEvent(em->events, event_id);
     if (event_to_remove_member == NULL)
     {
-        return EM_EVENT_NOT_EXISTS;
+        return EM_EVENT_ID_NOT_EXISTS;
     }
 
     MemberElement em_member = getMember(em->members, member_id);
@@ -405,7 +405,7 @@ EventManagerResult emRemoveMemberFromEvent(EventManager em, int member_id, int e
     MemberElement event_member =  getMember(event_to_remove_member->members, member_id);
     if(event_member == NULL)
     {
-        return EM_EVENT_AND_MEMBER_ALREADY_LINKED;
+        return EM_EVENT_AND_MEMBER_NOT_LINKED;
     }
 
     PriorityQueueResult remove_result = pqRemoveElement(event_to_remove_member->members, event_member);
