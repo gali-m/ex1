@@ -355,7 +355,7 @@ EventManagerResult emAddMemberToEvent(EventManager em, int member_id, int event_
     EventElement event_to_add_member = getEvent(em->events, event_id);
     if (event_to_add_member == NULL)
     {
-        return EM_EVENT_NOT_EXISTS;
+        return EM_EVENT_ID_NOT_EXISTS;
     }
 
     MemberElement em_member = getMember(em->members, member_id);
