@@ -193,7 +193,7 @@ EventManagerResult emRemoveEvent(EventManager em, int event_id)
     }
 
     // remove num of events from the memebers in the event
-    PQ_FOREACH(MemberElement, event_member, event->members)
+    PQ_FOREACH(MemberElement, event_member, ((EventElement)(event))->members)
     {
         MemberElement member = getMember(em->members, event_member->member_id);
         if (member == NULL)
