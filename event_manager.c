@@ -191,11 +191,21 @@ EventManagerResult emRemoveEvent(EventManager em, int event_id)
     {
         return EM_EVENT_NOT_EXISTS;
     }
+
+    // remove num of events from the memebers in the event
+    PQ_FOREACH(MemberElement, event_member, event->members)
+    {
+        MemberElement member = getMember(em->members, event_member->member_id);
+        if (member == NULL)
+        {
+            // not supposed to happen
+            return EM_MEMBER_ID_NOT_EXISTS;
+        }
+
+        member->num_of_events--;
+    }
     
-    // remove the event by it's id
     PriorityQueueResult result = pqRemoveElement(em->events, event);
-    
-    // freeEventElement(event);
 
     return EmResultToPqResult(result);
 }
@@ -479,13 +489,12 @@ void emPrintAllResponsibleMembers(EventManager em, const char* file_name)
         return;
     }
 
-    MemberElement current_member = (MemberElement)pqGetFirst(em->members);
-
-    while(current_member != NULL)
+    PQ_FOREACH(MemberElement,member,em->members)
     {
-        fprintf(members_file, "%s,%d\n", current_member->member_name, current_member->num_of_events);
-
-        current_member = pqGetNext(em->members);
+        if(member->num_of_events != 0)
+        {
+            fprintf(members_file, "%s,%d\n", member->member_name, member->num_of_events);
+        }
     }
 
     if(members_file != NULL)
