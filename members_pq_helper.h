@@ -50,6 +50,8 @@ PQElement copyMemberElement(PQElement element);
 */
 void freeMemberElement(PQElement element);
 
+PQElementPriority createMemberPriority(int member_id, int num_of_events);
+
 /**
 *   copyMemberPriority: Create a new copy of a member's priority.
 *
