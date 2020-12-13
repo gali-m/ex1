@@ -141,7 +141,6 @@ EventManagerResult emAddEventByDate(EventManager em, char *event_name, Date date
 
     freeEventElement(event);
 
-
     return EmResultToPqResult(result);
 }
 
@@ -171,7 +170,10 @@ EventManagerResult emAddEventByDiff(EventManager em, char *event_name, int days,
     }
 
     // insert the event and return the insertion's result
-    return emAddEventByDate(em, event_name, date, event_id);
+    EventManagerResult add_event_result = emAddEventByDate(em, event_name, date, event_id);
+
+    dateDestroy(date);
+    return add_event_result;
 }
 
 EventManagerResult emRemoveEvent(EventManager em, int event_id)
