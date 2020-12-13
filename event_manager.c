@@ -400,7 +400,34 @@ EventManagerResult emAddMemberToEvent(EventManager em, int member_id, int event_
     if(add_result == PQ_SUCCESS)
     {
         //change priority
+        MemberElement member = copyMemberElement(em_member);
+        if (!member)
+        {
+            return EM_OUT_OF_MEMORY;
+        }
+        PQElementPriority old_priority = createMemberPriority(em_member->member_id, em_member->num_of_events);
+        if (!old_priority)
+        {
+            freeMemberElement(member);
+            return EM_OUT_OF_MEMORY;
+        }
+        PQElementPriority new_priority = createMemberPriority(em_member->member_id, em_member->num_of_events + 1);
+        if (!new_priority)
+        {
+            freeMemberElement(member);
+            freeMemberPriority(old_priority);
+            return EM_OUT_OF_MEMORY;
+        }
+
         em_member->num_of_events++;
+        member->num_of_events++;
+        PriorityQueueResult change_priority_result = pqChangePriority(em->members,member,old_priority,new_priority);
+
+        freeMemberElement(member);
+        freeMemberPriority(old_priority);
+        freeMemberPriority(new_priority);
+
+        return EmResultToPqResult(change_priority_result);
     }
 
     return EmResultToPqResult(add_result);
