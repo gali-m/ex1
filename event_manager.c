@@ -239,17 +239,15 @@ EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_dat
         return EM_EVENT_ALREADY_EXISTS;
     }
 
-    PQElement new_event = copyEventElement(event);
-    if (!new_event)
+    Date old_date = dateCopy(event->date);
+    if(!old_date)
     {
         return EM_OUT_OF_MEMORY;
     }
 
-    //update the event's date (both in data and in priority)
-    PriorityQueueResult result = pqChangePriority(em->events, new_event, event->date, new_date);
-    if (result != PQ_SUCCESS && new_event)
+    if(event->date != NULL)
     {
-        freeEventElement(new_event);
+        dateDestroy(event->date);
     }
 
     event->date = dateCopy(new_date);
@@ -257,7 +255,15 @@ EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_dat
     {
         return EM_OUT_OF_MEMORY;
     }
-    
+
+    //update the event's date (both in data and in priority)
+    PriorityQueueResult result = pqChangePriority(em->events, event, old_date, new_date);
+
+    if(old_date != NULL)
+    {
+        dateDestroy(old_date);
+    }
+
     return EmResultToPqResult(result);
 }
 
