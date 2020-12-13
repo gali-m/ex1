@@ -228,7 +228,7 @@ EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_dat
     }
 
     // get the event to update
-    EventElement event = getEvent(em->events, event_id);
+    EventElement event = copyEventElement(getEvent(em->events, event_id));
     if (!event)
     {
         return EM_EVENT_ID_NOT_EXISTS;
@@ -262,6 +262,11 @@ EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_dat
     if(old_date != NULL)
     {
         dateDestroy(old_date);
+    }
+
+    if(event != NULL)
+    {
+        freeEventElement(event);
     }
 
     return EmResultToPqResult(result);
