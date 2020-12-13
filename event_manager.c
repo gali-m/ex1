@@ -193,9 +193,9 @@ EventManagerResult emRemoveEvent(EventManager em, int event_id)
     }
 
     // remove num of events from the memebers in the event
-    PQ_FOREACH(MemberElement, event_member, ((EventElement)(event))->members)
+    PQ_FOREACH(PQElement, event_member, ((EventElement)(event))->members)
     {
-        MemberElement member = getMember(em->members, event_member->member_id);
+        MemberElement member = getMember(em->members, *(int*)event_member);
         if (member == NULL)
         {
             // not supposed to happen
@@ -292,7 +292,8 @@ EventManagerResult emTick(EventManager em, int days)
         return EM_SUCCESS;
     }
 
-    while ((EventElement)pqGetFirst(em->events) != NULL && dateCompare(((EventElement)pqGetFirst(em->events))->date, em->current_date) < 0)
+    while ((EventElement)pqGetFirst(em->events) != NULL 
+             && dateCompare(((EventElement)pqGetFirst(em->events))->date, em->current_date) < 0)
     { // remove events which occur before current date
         result = emRemoveEvent(em, ((EventElement)pqGetFirst(em->events))->event_id);
         if (result == EM_OUT_OF_MEMORY)
