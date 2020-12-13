@@ -454,7 +454,7 @@ void emPrintAllEvents(EventManager em, const char* file_name)
     PQ_FOREACH(EventElement,event,em->events)
     {
         int day, month, year;
-        if(dateGet(event->date, &day, &month, &year))
+        if(!dateGet(event->date, &day, &month, &year))
         {
             return;
         }
