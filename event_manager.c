@@ -228,7 +228,7 @@ EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_dat
     }
 
     // get the event to update
-    EventElement event = getEvent(em->events, event_id);
+    EventElement event = copyEventElement(getEvent(em->events, event_id));
     if (!event)
     {
         return EM_EVENT_ID_NOT_EXISTS;
@@ -236,12 +236,14 @@ EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_dat
 
     if (isEventExists(em->events, event->event_name, new_date))
     { // an event with the same name already exists on this date
+        freeEventElement(event);
         return EM_EVENT_ALREADY_EXISTS;
     }
 
     Date old_date = dateCopy(event->date);
     if(!old_date)
     {
+        freeEventElement(event);
         return EM_OUT_OF_MEMORY;
     }
 
@@ -253,6 +255,8 @@ EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_dat
     event->date = dateCopy(new_date);
     if(!event->date)
     {
+        freeEventElement(event);
+        dateDestroy(old_date);
         return EM_OUT_OF_MEMORY;
     }
 
@@ -262,6 +266,11 @@ EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_dat
     if(old_date != NULL)
     {
         dateDestroy(old_date);
+    }
+
+    if(event != NULL)
+    {
+        freeEventElement(event);
     }
 
     return EmResultToPqResult(result);
@@ -381,18 +390,19 @@ EventManagerResult emAddMemberToEvent(EventManager em, int member_id, int event_
         return EM_MEMBER_ID_NOT_EXISTS;
     }
 
-    PQElement event_member =  getEventMember(event_to_add_member->members, member_id);
+    MemberElement event_member =  getMember(event_to_add_member->members, member_id);
     if(event_member != NULL)
     {
         return EM_EVENT_AND_MEMBER_ALREADY_LINKED;
     }
 
-    PriorityQueueResult add_result = AddEventMemberToQueue(event_to_add_member->members, member_id);
+    PriorityQueueResult add_result = AddMemberToQueue(event_to_add_member->members, em_member->member_name, member_id);
 
     if(add_result == PQ_SUCCESS)
     {
-        //change priority
+        event_member =  getMember(event_to_add_member->members, member_id);
         em_member->num_of_events++;
+        event_member->num_of_events++;
     }
 
     return EmResultToPqResult(add_result);
@@ -418,7 +428,7 @@ EventManagerResult emRemoveMemberFromEvent(EventManager em, int member_id, int e
         return EM_MEMBER_ID_NOT_EXISTS;
     }
 
-    PQElement event_member =  getEventMember(event_to_remove_member->members, member_id);
+    MemberElement event_member =  getMember(event_to_remove_member->members, member_id);
     if(event_member == NULL)
     {
         return EM_EVENT_AND_MEMBER_NOT_LINKED;
@@ -427,8 +437,8 @@ EventManagerResult emRemoveMemberFromEvent(EventManager em, int member_id, int e
     PriorityQueueResult remove_result = pqRemoveElement(event_to_remove_member->members, event_member);
     if(remove_result == PQ_SUCCESS)
     {
-        // change priority
         em_member->num_of_events--;
+        event_member->num_of_events--;
     }
 
     return EmResultToPqResult(remove_result);
@@ -467,9 +477,9 @@ void emPrintAllEvents(EventManager em, const char* file_name)
 
         fprintf(events_file, "%s,%d.%d.%d", event->event_name, day, month, year);
 
-        PQ_FOREACH(PQElement,member,event->members)
+        PQ_FOREACH(MemberElement,member,event->members)
         {
-            fprintf(events_file, ",%s", getMember(em->members,*(int*)member)->member_name);
+            fprintf(events_file, ",%s", member->member_name);
         }
 
         fprintf(events_file, "\n");
