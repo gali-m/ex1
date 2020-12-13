@@ -158,4 +158,8 @@ bool isEventExists(PriorityQueue queue, char* event_name, Date date);
 */
 EventElement getEvent(PriorityQueue events, int event_id);
 
+PQElement getEventMember(PriorityQueue members, int member_id);
+
+PriorityQueueResult AddEventMemberToQueue(PriorityQueue members, int member_id);
+
 #endif //EVENTS_PQ_HELPER_H_

@@ -79,8 +79,8 @@ PQElement createEventElement(char* event_name, int event_id, Date date, Priority
     }
     else
     {
-        event_element->members = pqCreate(copyMemberElement, freeMemberElement, EqualMemberElement, copyMemberPriority,
-                                      freeMemberPriority, CompareMemberPriorities);
+        event_element->members = pqCreate(copyEventMember, freeEventMember, equalEventMember, copyEventMember, 
+                                            freeEventMember, compareEventMemberPriorities);
     }
     
     if(!event_element->members)
@@ -224,4 +224,44 @@ EventElement getEvent(PriorityQueue events, int event_id)
 
     // no such event in events
     return NULL;
+}
+
+PQElement getEventMember(PriorityQueue members, int member_id)
+{
+    if (!members)
+    {
+        return NULL;
+    }
+
+    PQ_FOREACH(PQElement,member,members)
+    {
+        if(*(int*)member == member_id)
+        {
+            return member;
+        }
+    }
+
+    return NULL;
+}
+
+PriorityQueueResult AddEventMemberToQueue(PriorityQueue members, int member_id)
+{
+    PQElement new_member = copyEventMember((PQElement)&member_id);
+    if(new_member == NULL)
+    {
+        return PQ_OUT_OF_MEMORY;
+    }
+
+    PQElement new_member_priority = copyEventMember((PQElement)&member_id);
+    if(new_member_priority == NULL)
+    {
+        return PQ_OUT_OF_MEMORY;
+    }
+
+    PriorityQueueResult pq_insert_result = pqInsert(members, new_member, new_member_priority);
+
+    freeEventMember(new_member);
+    free(new_member_priority);
+
+    return pq_insert_result;
 }
