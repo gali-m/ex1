@@ -61,7 +61,7 @@ void freeMemberElement(PQElement element)
 }
 
 
-PQElement createMemberPriority(int member_id, int num_of_events)
+PQElementPriority createMemberPriority(int member_id, int num_of_events)
 {
     MemberPriority member_element = (MemberPriority)malloc(sizeof(struct MemberPriority_t));
     if (!member_element) {
@@ -71,7 +71,7 @@ PQElement createMemberPriority(int member_id, int num_of_events)
     member_element->member_id = member_id;
     member_element->num_of_events = num_of_events;
 
-    return (PQElement)member_element;
+    return member_element;
 }
 
 PQElementPriority copyMemberPriority(PQElementPriority priority)
@@ -80,14 +80,14 @@ PQElementPriority copyMemberPriority(PQElementPriority priority)
         return NULL;
     }
 
-    PQElement priority_copy = createMemberPriority(((MemberPriority)priority)->member_id, 
+    PQElementPriority priority_copy = createMemberPriority(((MemberPriority)priority)->member_id, 
                                                    ((MemberPriority)priority)->num_of_events);
     if(priority_copy == NULL)
     {
         return NULL;
     }
 
-    return (PQElementPriority)priority_copy;
+    return priority_copy;
 }
 
 void freeMemberPriority(PQElementPriority priority)

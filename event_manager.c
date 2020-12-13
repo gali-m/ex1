@@ -171,7 +171,10 @@ EventManagerResult emAddEventByDiff(EventManager em, char *event_name, int days,
     }
 
     // insert the event and return the insertion's result
-    return emAddEventByDate(em, event_name, date, event_id);
+    EventManagerResult add_event_result = emAddEventByDate(em, event_name, date, event_id);
+    dateDestroy(date);
+    
+    return add_event_result;
 }
 
 EventManagerResult emRemoveEvent(EventManager em, int event_id)
@@ -228,20 +231,22 @@ EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_dat
     }
 
     // get the event to update
-    EventElement event = getEvent(em->events, event_id);
+    EventElement event = copyEventElement(getEvent(em->events, event_id));
     if (!event)
     {
         return EM_EVENT_ID_NOT_EXISTS;
     }
-
+    
     if (isEventExists(em->events, event->event_name, new_date))
     { // an event with the same name already exists on this date
+        freeEventElement(event);
         return EM_EVENT_ALREADY_EXISTS;
     }
 
     Date old_date = dateCopy(event->date);
     if(!old_date)
     {
+        freeEventElement(event);
         return EM_OUT_OF_MEMORY;
     }
 
@@ -253,6 +258,8 @@ EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_dat
     event->date = dateCopy(new_date);
     if(!event->date)
     {
+        dateDestroy(old_date);
+        freeEventElement(event);
         return EM_OUT_OF_MEMORY;
     }
 
@@ -263,7 +270,8 @@ EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_dat
     {
         dateDestroy(old_date);
     }
-
+    freeEventElement(event);
+    
     return EmResultToPqResult(result);
 }
 
