@@ -205,11 +205,41 @@ EventManagerResult emRemoveEvent(EventManager em, int event_id)
             return EM_MEMBER_ID_NOT_EXISTS;
         }
 
+        //change priority
+        MemberElement member_copy = copyMemberElement(member);
+        if (!member_copy)
+        {
+            return EM_OUT_OF_MEMORY;
+        }
+        PQElementPriority old_priority = createMemberPriority(member->member_id, member->num_of_events);
+        if (!old_priority)
+        {
+            freeMemberElement(member_copy);
+            return EM_OUT_OF_MEMORY;
+        }
+        PQElementPriority new_priority = createMemberPriority(member->member_id, member->num_of_events - 1);
+        if (!new_priority)
+        {
+            freeMemberElement(member_copy);
+            freeMemberPriority(old_priority);
+            return EM_OUT_OF_MEMORY;
+        }
+
         member->num_of_events--;
+        member_copy->num_of_events--;
+        PriorityQueueResult change_priority_result = pqChangePriority(em->members,member_copy,old_priority,new_priority);
+
+        freeMemberElement(member_copy);
+        freeMemberPriority(old_priority);
+        freeMemberPriority(new_priority);
+
+        if (change_priority_result != PQ_SUCCESS)
+        {
+            return EmResultToPqResult(change_priority_result);
+        }
     }
     
     PriorityQueueResult result = pqRemoveElement(em->events, event);
-
     return EmResultToPqResult(result);
 }
 
@@ -462,8 +492,35 @@ EventManagerResult emRemoveMemberFromEvent(EventManager em, int member_id, int e
     PriorityQueueResult remove_result = pqRemoveElement(event_to_remove_member->members, event_member);
     if(remove_result == PQ_SUCCESS)
     {
-        // change priority
+        //change priority
+        MemberElement member = copyMemberElement(em_member);
+        if (!member)
+        {
+            return EM_OUT_OF_MEMORY;
+        }
+        PQElementPriority old_priority = createMemberPriority(em_member->member_id, em_member->num_of_events);
+        if (!old_priority)
+        {
+            freeMemberElement(member);
+            return EM_OUT_OF_MEMORY;
+        }
+        PQElementPriority new_priority = createMemberPriority(em_member->member_id, em_member->num_of_events - 1);
+        if (!new_priority)
+        {
+            freeMemberElement(member);
+            freeMemberPriority(old_priority);
+            return EM_OUT_OF_MEMORY;
+        }
+
         em_member->num_of_events--;
+        member->num_of_events--;
+        PriorityQueueResult change_priority_result = pqChangePriority(em->members,member,old_priority,new_priority);
+
+        freeMemberElement(member);
+        freeMemberPriority(old_priority);
+        freeMemberPriority(new_priority);
+
+        return EmResultToPqResult(change_priority_result);
     }
 
     return EmResultToPqResult(remove_result);
