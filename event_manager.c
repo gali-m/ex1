@@ -92,13 +92,6 @@ void destroyEventManager(EventManager em)
 
         if(em->events != NULL)
         {
-            PQ_FOREACH(EventElement,event,em->events)
-            {
-                if(event->members != NULL)
-                {
-                    pqDestroy(event->members);
-                } 
-            }
             pqDestroy(em->events);
         }
 

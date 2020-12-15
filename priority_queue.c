@@ -27,7 +27,7 @@ PriorityQueue pqCreate(CopyPQElement copy_element,
     }
 
     new_priority_queue->copy_element = copy_element;
-    new_priority_queue->free_element = free_priority;
+    new_priority_queue->free_element = free_element;
     new_priority_queue->equal_elements = equal_elements;
     new_priority_queue->copy_priority = copy_priority;
     new_priority_queue->free_priority = free_priority;
