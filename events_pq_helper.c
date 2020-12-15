@@ -30,7 +30,7 @@ void freeEventMember(PQElement element)
 {
     if(element != NULL)
     {
-        free((element));
+        free(element);
     }
 }
 
@@ -261,7 +261,7 @@ PriorityQueueResult AddEventMemberToQueue(PriorityQueue members, int member_id)
     PriorityQueueResult pq_insert_result = pqInsert(members, new_member, new_member_priority);
 
     freeEventMember(new_member);
-    free(new_member_priority);
+    freeEventMember(new_member_priority);
 
     return pq_insert_result;
 }
