@@ -89,10 +89,19 @@ void destroyEventManager(EventManager em)
         {
             dateDestroy(em->current_date);
         }
+
         if(em->events != NULL)
         {
+            PQ_FOREACH(EventElement,event,em->events)
+            {
+                if(event->members != NULL)
+                {
+                    pqDestroy(event->members);
+                } 
+            }
             pqDestroy(em->events);
         }
+
         if(em->members != NULL)
         {
             pqDestroy(em->members);
