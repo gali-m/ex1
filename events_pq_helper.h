@@ -158,8 +158,28 @@ bool isEventExists(PriorityQueue queue, char* event_name, Date date);
 */
 EventElement getEvent(PriorityQueue events, int event_id);
 
+/**
+*   getEventMember: get an event member from the event members priority queue.
+*   The event member's identification is by it's id.
+*
+* @param members - The event members priority queue to search for the event member in.
+* @param member_id - The id of the event member.
+* @return
+* 	NULL if one the parameters is NULL or if there's no member with id = member_id in the priority queue.
+* 	PQElement the event member from the event members priority queue otherwise.
+*/
 PQElement getEventMember(PriorityQueue members, int member_id);
 
+/**
+*   AddEventMemberToQueue: add an event member to the event members priority queue.
+*
+* @param members - The event members priority queue to add the event member to.
+* @param member_id - The id of the event member.
+* @return
+*   PQ_NULL_ARGUMENT if a NULL was sent as one of the parameters.
+* 	PQ_OUT_OF_MEMORY if an allocation failed.
+* 	PQ_SUCCESS the event member had been inserted successfully.
+*/
 PriorityQueueResult AddEventMemberToQueue(PriorityQueue members, int member_id);
 
 #endif //EVENTS_PQ_HELPER_H_

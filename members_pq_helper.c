@@ -63,11 +63,13 @@ void freeMemberElement(PQElement element)
 
 PQElementPriority createMemberPriority(int member_id, int num_of_events)
 {
+    // create a new priority
     MemberPriority member_element = (MemberPriority)malloc(sizeof(struct MemberPriority_t));
     if (!member_element) {
         return NULL;
     }
 
+    // assign the values to the priority
     member_element->member_id = member_id;
     member_element->num_of_events = num_of_events;
 
@@ -136,11 +138,12 @@ MemberElement getMember(PriorityQueue members, int member_id)
     PQ_FOREACH(MemberElement,member,members)
     {
         if(member->member_id == member_id)
-        {
+        { // the member was found
             return member;
         }
     }
 
+    // no such event member in members
     return NULL;
 }
 
@@ -163,6 +166,7 @@ PriorityQueueResult AddMemberToQueue(PriorityQueue members,char* member_name, in
         return PQ_OUT_OF_MEMORY;
     }
 
+    // insert the member to the members priority queue
     PriorityQueueResult pq_insert_result = pqInsert(members, new_member, new_member_priority);
 
     freeMemberElement(new_member);

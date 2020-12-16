@@ -236,11 +236,12 @@ PQElement getEventMember(PriorityQueue members, int member_id)
     PQ_FOREACH(PQElement,member,members)
     {
         if(*(int*)member == member_id)
-        {
+        { // the event member was found
             return member;
         }
     }
 
+    // no such event member in members
     return NULL;
 }
 
@@ -258,6 +259,7 @@ PriorityQueueResult AddEventMemberToQueue(PriorityQueue members, int member_id)
         return PQ_OUT_OF_MEMORY;
     }
 
+    // insert the member to the event members priority queue
     PriorityQueueResult pq_insert_result = pqInsert(members, new_member, new_member_priority);
 
     freeEventMember(new_member);
