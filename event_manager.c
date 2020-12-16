@@ -8,6 +8,8 @@
 #include <stdio.h>
 #include <assert.h>
 
+#define ADDITION 1
+#define SUBTRACTION -1
 #define NULL_INPUT_ERROR -1
 #define FILE_MODE "w"
 
@@ -20,7 +22,7 @@ struct EventManager_t
 };
 // TODO: Switch params to const?
 
-static EventManagerResult EmResultToPqResult(PriorityQueueResult result)
+static EventManagerResult EmResultFromPqResult(PriorityQueueResult result)
 {
     if(result == PQ_NULL_ARGUMENT)
     {
@@ -38,12 +40,60 @@ static EventManagerResult EmResultToPqResult(PriorityQueueResult result)
     {
         return EM_EVENT_NOT_EXISTS;
     }
-    if(result == PQ_NULL_ARGUMENT)
+
+    return EM_ERROR;
+}
+
+static EventManagerResult AddOrRemoveChecks(EventManager em, int member_id, int event_id)
+{
+    if(em == NULL)
     {
         return EM_NULL_ARGUMENT;
     }
 
-    return EM_ERROR;
+    if(member_id < 0)
+    {
+        return EM_INVALID_MEMBER_ID;
+    }
+
+    if(event_id < 0)
+    {
+        return EM_INVALID_EVENT_ID;
+    }
+    
+    return EM_SUCCESS;
+}
+
+static EventManagerResult changeMemberPriority(EventManager em, MemberElement em_member, int change)
+{
+    MemberElement member = copyMemberElement(em_member);
+        if (!member)
+        {
+            return EM_OUT_OF_MEMORY;
+        }
+        PQElementPriority old_priority = createMemberPriority(em_member->member_id, em_member->num_of_events);
+        if (!old_priority)
+        {
+            freeMemberElement(member);
+            return EM_OUT_OF_MEMORY;
+        }
+        PQElementPriority new_priority = createMemberPriority(em_member->member_id, em_member->num_of_events + change);
+        if (!new_priority)
+        {
+            freeMemberElement(member);
+            freeMemberPriority(old_priority);
+            return EM_OUT_OF_MEMORY;
+        }
+
+        em_member->num_of_events += change;
+        member->num_of_events += change;
+        PriorityQueueResult change_priority_result = pqChangePriority(em->members,member,old_priority,new_priority);
+
+        freeMemberElement(member);
+        freeMemberPriority(old_priority);
+        freeMemberPriority(new_priority);
+
+        return EmResultFromPqResult(change_priority_result);
 }
 
 EventManager createEventManager(Date date)
@@ -144,7 +194,7 @@ EventManagerResult emAddEventByDate(EventManager em, char *event_name, Date date
     freeEventElement(event);
 
 
-    return EmResultToPqResult(result);
+    return EmResultFromPqResult(result);
 }
 
 EventManagerResult emAddEventByDiff(EventManager em, char *event_name, int days, int event_id)
@@ -208,41 +258,16 @@ EventManagerResult emRemoveEvent(EventManager em, int event_id)
         }
 
         //change priority
-        MemberElement member_copy = copyMemberElement(member);
-        if (!member_copy)
-        {
-            return EM_OUT_OF_MEMORY;
-        }
-        PQElementPriority old_priority = createMemberPriority(member->member_id, member->num_of_events);
-        if (!old_priority)
-        {
-            freeMemberElement(member_copy);
-            return EM_OUT_OF_MEMORY;
-        }
-        PQElementPriority new_priority = createMemberPriority(member->member_id, member->num_of_events - 1);
-        if (!new_priority)
-        {
-            freeMemberElement(member_copy);
-            freeMemberPriority(old_priority);
-            return EM_OUT_OF_MEMORY;
-        }
-
-        member->num_of_events--;
-        member_copy->num_of_events--;
-        PriorityQueueResult change_priority_result = pqChangePriority(em->members,member_copy,old_priority,new_priority);
-
-        freeMemberElement(member_copy);
-        freeMemberPriority(old_priority);
-        freeMemberPriority(new_priority);
+        PriorityQueueResult change_priority_result = changeMemberPriority(em, member, SUBTRACTION);
 
         if (change_priority_result != PQ_SUCCESS)
         {
-            return EmResultToPqResult(change_priority_result);
+            return EmResultFromPqResult(change_priority_result);
         }
     }
     
     PriorityQueueResult result = pqRemoveElement(em->events, event);
-    return EmResultToPqResult(result);
+    return EmResultFromPqResult(result);
 }
 
 EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_date)
@@ -304,7 +329,7 @@ EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_dat
     }
     freeEventElement(event);
     
-    return EmResultToPqResult(result);
+    return EmResultFromPqResult(result);
 }
 
 EventManagerResult emTick(EventManager em, int days)
@@ -358,26 +383,6 @@ int emGetEventsAmount(EventManager em)
     return pqGetSize(em->events);
 }
 
-static EventManagerResult AddOrRemoveCheckes(EventManager em, int member_id, int event_id)
-{
-    if(em == NULL)
-    {
-        return EM_NULL_ARGUMENT;
-    }
-
-    if(member_id < 0)
-    {
-        return EM_INVALID_MEMBER_ID;
-    }
-
-    if(event_id < 0)
-    {
-        return EM_INVALID_EVENT_ID;
-    }
-    
-    return EM_SUCCESS;
-}
-
 EventManagerResult emAddMember(EventManager em, char* member_name, int member_id)
 {
     if(em == NULL || member_name == NULL)
@@ -398,12 +403,12 @@ EventManagerResult emAddMember(EventManager em, char* member_name, int member_id
 
     PriorityQueueResult add_result = AddMemberToQueue(em->members, member_name, member_id);
 
-    return EmResultToPqResult(add_result);
+    return EmResultFromPqResult(add_result);
 }
 
 EventManagerResult emAddMemberToEvent(EventManager em, int member_id, int event_id)
 {
-    EventManagerResult checks_result = AddOrRemoveCheckes(em, member_id, event_id);
+    EventManagerResult checks_result = AddOrRemoveChecks(em, member_id, event_id);
     if( checks_result != EM_SUCCESS)
     {
         return checks_result;
@@ -432,42 +437,17 @@ EventManagerResult emAddMemberToEvent(EventManager em, int member_id, int event_
     if(add_result == PQ_SUCCESS)
     {
         //change priority
-        MemberElement member = copyMemberElement(em_member);
-        if (!member)
-        {
-            return EM_OUT_OF_MEMORY;
-        }
-        PQElementPriority old_priority = createMemberPriority(em_member->member_id, em_member->num_of_events);
-        if (!old_priority)
-        {
-            freeMemberElement(member);
-            return EM_OUT_OF_MEMORY;
-        }
-        PQElementPriority new_priority = createMemberPriority(em_member->member_id, em_member->num_of_events + 1);
-        if (!new_priority)
-        {
-            freeMemberElement(member);
-            freeMemberPriority(old_priority);
-            return EM_OUT_OF_MEMORY;
-        }
+        PriorityQueueResult change_priority_result = changeMemberPriority(em, em_member, ADDITION);
 
-        em_member->num_of_events++;
-        member->num_of_events++;
-        PriorityQueueResult change_priority_result = pqChangePriority(em->members,member,old_priority,new_priority);
-
-        freeMemberElement(member);
-        freeMemberPriority(old_priority);
-        freeMemberPriority(new_priority);
-
-        return EmResultToPqResult(change_priority_result);
+        return EmResultFromPqResult(change_priority_result);
     }
 
-    return EmResultToPqResult(add_result);
+    return EmResultFromPqResult(add_result);
 }
 
 EventManagerResult emRemoveMemberFromEvent(EventManager em, int member_id, int event_id)
 {
-    EventManagerResult checks_result = AddOrRemoveCheckes(em, member_id, event_id);
+    EventManagerResult checks_result = AddOrRemoveChecks(em, member_id, event_id);
     if( checks_result != EM_SUCCESS)
     {
         return checks_result;
@@ -495,37 +475,12 @@ EventManagerResult emRemoveMemberFromEvent(EventManager em, int member_id, int e
     if(remove_result == PQ_SUCCESS)
     {
         //change priority
-        MemberElement member = copyMemberElement(em_member);
-        if (!member)
-        {
-            return EM_OUT_OF_MEMORY;
-        }
-        PQElementPriority old_priority = createMemberPriority(em_member->member_id, em_member->num_of_events);
-        if (!old_priority)
-        {
-            freeMemberElement(member);
-            return EM_OUT_OF_MEMORY;
-        }
-        PQElementPriority new_priority = createMemberPriority(em_member->member_id, em_member->num_of_events - 1);
-        if (!new_priority)
-        {
-            freeMemberElement(member);
-            freeMemberPriority(old_priority);
-            return EM_OUT_OF_MEMORY;
-        }
+        PriorityQueueResult change_priority_result = changeMemberPriority(em, em_member, SUBTRACTION);
 
-        em_member->num_of_events--;
-        member->num_of_events--;
-        PriorityQueueResult change_priority_result = pqChangePriority(em->members,member,old_priority,new_priority);
-
-        freeMemberElement(member);
-        freeMemberPriority(old_priority);
-        freeMemberPriority(new_priority);
-
-        return EmResultToPqResult(change_priority_result);
+        return EmResultFromPqResult(change_priority_result);
     }
 
-    return EmResultToPqResult(remove_result);
+    return EmResultFromPqResult(remove_result);
 }
 
 char* emGetNextEvent(EventManager em)
