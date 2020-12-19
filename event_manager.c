@@ -17,11 +17,18 @@ struct EventManager_t
 {
     Date current_date;
     PriorityQueue events; // each event's date is it's priority,
-    // event data = id + name + priority queue of members (priority = id), ordered by date, then by input time.
+    //event data = id + name + priority queue of member ids (priority = id).
     PriorityQueue members; // members data - id, name, priority = number of events responsible for
 };
-// TODO: Switch params to const?
 
+/**
+*   EmResultFromPqResult: A static function for converting priority queue results to event manager results.
+*
+* @param result - The priority queue result.
+* @return
+* 	EventManagerResult the corresponding event manager result.
+*   EM_ERROR if there is none.
+*/
 static EventManagerResult EmResultFromPqResult(PriorityQueueResult result)
 {
     if(result == PQ_NULL_ARGUMENT)
@@ -44,6 +51,18 @@ static EventManagerResult EmResultFromPqResult(PriorityQueueResult result)
     return EM_ERROR;
 }
 
+/**
+*   AddOrRemoveChecks: A static function for validating parameters.
+*
+* @param em - event manager element.
+* @param member_id - The member id to verify.
+* @param event_id - The event id to verify.
+* @return
+* 	EM_NULL_ARGUMENT if the event manager element is null.
+*   EM_INVALID_MEMBER_ID if the member id is negative.
+*   EM_INVALID_EVENT_ID if the event id is negative.
+*   EM_SUCCESS if the parameters are valid.
+*/
 static EventManagerResult AddOrRemoveChecks(EventManager em, int member_id, int event_id)
 {
     if(em == NULL)
@@ -64,13 +83,30 @@ static EventManagerResult AddOrRemoveChecks(EventManager em, int member_id, int 
     return EM_SUCCESS;
 }
 
+/**
+*   changeMemberPriority: A static function for changing a member's priority in the event manager element.
+*   Changing the member's priority changes the printing order.
+*
+* @param em - event manager element.
+* @param em_member - a member element.
+* @param change - the amount off events to add/subtract to the member element.
+* @return
+* 	EM_OUT_OF_MEMORY if an allocation failed.
+*   EM_NULL_ARGUMENT if one of the arguments is null.
+*   EM_EVENT_NOT_EXISTS if there is no such member in the event manager. //TODO: do a different func for members?
+*   EM_SUCCESS if the change was successful.
+*   EM_ERROR otherwise.
+*/
 static EventManagerResult changeMemberPriority(EventManager em, MemberElement em_member, int change)
 {
+    // create a copy of em_member
     MemberElement member = copyMemberElement(em_member);
         if (!member)
         {
             return EM_OUT_OF_MEMORY;
         }
+
+        // create the previous and wanted priorities
         PQElementPriority old_priority = createMemberPriority(em_member->member_id, em_member->num_of_events);
         if (!old_priority)
         {
@@ -85,10 +121,14 @@ static EventManagerResult changeMemberPriority(EventManager em, MemberElement em
             return EM_OUT_OF_MEMORY;
         }
 
+        // update the element data of the member
         em_member->num_of_events += change;
         member->num_of_events += change;
+
+        // update the priority of the member
         PriorityQueueResult change_priority_result = pqChangePriority(em->members,member,old_priority,new_priority);
 
+        // free the unnecessary copies
         freeMemberElement(member);
         freeMemberPriority(old_priority);
         freeMemberPriority(new_priority);
