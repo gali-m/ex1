@@ -546,6 +546,7 @@ void emPrintAllEvents(EventManager em, const char* file_name)
         return;
     }
 
+    // print all events in list
     PQ_FOREACH(EventElement,event,em->events)
     {
         int day, month, year;
@@ -556,6 +557,7 @@ void emPrintAllEvents(EventManager em, const char* file_name)
 
         fprintf(events_file, "%s,%d.%d.%d", event->event_name, day, month, year);
 
+        // print all memeber in the event
         PQ_FOREACH(PQElement,member,event->members)
         {
             fprintf(events_file, ",%s", getMember(em->members,*(int*)member)->member_name);
