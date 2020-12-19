@@ -224,7 +224,7 @@ PriorityQueueResult pqRemove(PriorityQueue queue)
 
     if(queue->element_list == NULL)
     {
-        return PQ_NULL_ARGUMENT;
+        return PQ_SUCCESS;
     }
 
     ElementNode next_element = queue->element_list->next;
