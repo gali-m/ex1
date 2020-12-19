@@ -303,7 +303,7 @@ EventManagerResult emRemoveEvent(EventManager em, int event_id)
         }
 
         //change priority
-        EventMnegerResult change_priority_result = changeMemberPriority(em, member, SUBTRACTION);
+        EventManagerResult change_priority_result = changeMemberPriority(em, member, SUBTRACTION);
 
         if (change_priority_result != EM_SUCCESS)
         {
