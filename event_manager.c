@@ -12,6 +12,7 @@
 #define SUBTRACTION -1
 #define NULL_INPUT_ERROR -1
 #define FILE_MODE "w"
+enum objects{eventObject,memberObject};
 
 struct EventManager_t
 {
@@ -29,7 +30,7 @@ struct EventManager_t
 * 	EventManagerResult the corresponding event manager result.
 *   EM_ERROR if there is none.
 */
-static EventManagerResult EmResultFromPqResult(PriorityQueueResult result)
+static EventManagerResult EmResultFromPqResult(PriorityQueueResult result, enum objects object)
 {
     if(result == PQ_NULL_ARGUMENT)
     {
@@ -45,7 +46,11 @@ static EventManagerResult EmResultFromPqResult(PriorityQueueResult result)
     }
     if(result == PQ_ELEMENT_DOES_NOT_EXISTS)
     {
-        return EM_EVENT_NOT_EXISTS;
+        if (object == eventObject)
+        {
+            return EM_EVENT_NOT_EXISTS;
+        }
+        return EM_MEMBER_ID_NOT_EXISTS;
     }
 
     return EM_ERROR;
@@ -93,7 +98,7 @@ static EventManagerResult AddOrRemoveChecks(EventManager em, int member_id, int 
 * @return
 * 	EM_OUT_OF_MEMORY if an allocation failed.
 *   EM_NULL_ARGUMENT if one of the arguments is null.
-*   EM_EVENT_NOT_EXISTS if there is no such member in the event manager. //TODO: do a different func for members?
+*   EM_MEMBER_ID_NOT_EXISTS if there is no such member in the event manager. 
 *   EM_SUCCESS if the change was successful.
 *   EM_ERROR otherwise.
 */
@@ -133,7 +138,7 @@ static EventManagerResult changeMemberPriority(EventManager em, MemberElement em
         freeMemberPriority(old_priority);
         freeMemberPriority(new_priority);
 
-        return EmResultFromPqResult(change_priority_result);
+        return EmResultFromPqResult(change_priority_result, memberObject);
 }
 
 EventManager createEventManager(Date date)
@@ -234,7 +239,7 @@ EventManagerResult emAddEventByDate(EventManager em, char *event_name, Date date
     freeEventElement(event);
 
 
-    return EmResultFromPqResult(result);
+    return EmResultFromPqResult(result, eventObject);
 }
 
 EventManagerResult emAddEventByDiff(EventManager em, char *event_name, int days, int event_id)
@@ -298,16 +303,16 @@ EventManagerResult emRemoveEvent(EventManager em, int event_id)
         }
 
         //change priority
-        PriorityQueueResult change_priority_result = changeMemberPriority(em, member, SUBTRACTION);
+        EventMnegerResult change_priority_result = changeMemberPriority(em, member, SUBTRACTION);
 
-        if (change_priority_result != PQ_SUCCESS)
+        if (change_priority_result != EM_SUCCESS)
         {
-            return EmResultFromPqResult(change_priority_result);
+            return change_priority_result;
         }
     }
     
     PriorityQueueResult result = pqRemoveElement(em->events, event);
-    return EmResultFromPqResult(result);
+    return EmResultFromPqResult(result, eventObject);
 }
 
 EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_date)
@@ -369,7 +374,7 @@ EventManagerResult emChangeEventDate(EventManager em, int event_id, Date new_dat
     }
     freeEventElement(event);
     
-    return EmResultFromPqResult(result);
+    return EmResultFromPqResult(result, eventObject);
 }
 
 EventManagerResult emTick(EventManager em, int days)
@@ -443,7 +448,7 @@ EventManagerResult emAddMember(EventManager em, char* member_name, int member_id
 
     PriorityQueueResult add_result = AddMemberToQueue(em->members, member_name, member_id);
 
-    return EmResultFromPqResult(add_result);
+    return EmResultFromPqResult(add_result, memberObject);
 }
 
 EventManagerResult emAddMemberToEvent(EventManager em, int member_id, int event_id)
@@ -477,12 +482,10 @@ EventManagerResult emAddMemberToEvent(EventManager em, int member_id, int event_
     if(add_result == PQ_SUCCESS)
     {
         //change priority
-        PriorityQueueResult change_priority_result = changeMemberPriority(em, em_member, ADDITION);
-
-        return EmResultFromPqResult(change_priority_result);
+        return changeMemberPriority(em, em_member, ADDITION);
     }
 
-    return EmResultFromPqResult(add_result);
+    return EmResultFromPqResult(add_result, memberObject);
 }
 
 EventManagerResult emRemoveMemberFromEvent(EventManager em, int member_id, int event_id)
@@ -515,12 +518,10 @@ EventManagerResult emRemoveMemberFromEvent(EventManager em, int member_id, int e
     if(remove_result == PQ_SUCCESS)
     {
         //change priority
-        PriorityQueueResult change_priority_result = changeMemberPriority(em, em_member, SUBTRACTION);
-
-        return EmResultFromPqResult(change_priority_result);
+        return changeMemberPriority(em, em_member, SUBTRACTION);
     }
 
-    return EmResultFromPqResult(remove_result);
+    return EmResultFromPqResult(remove_result, memberObject);
 }
 
 char* emGetNextEvent(EventManager em)
@@ -546,7 +547,6 @@ void emPrintAllEvents(EventManager em, const char* file_name)
         return;
     }
 
-    // print all events in list
     PQ_FOREACH(EventElement,event,em->events)
     {
         int day, month, year;
@@ -557,7 +557,6 @@ void emPrintAllEvents(EventManager em, const char* file_name)
 
         fprintf(events_file, "%s,%d.%d.%d", event->event_name, day, month, year);
 
-        // print all memeber in the event
         PQ_FOREACH(PQElement,member,event->members)
         {
             fprintf(events_file, ",%s", getMember(em->members,*(int*)member)->member_name);
